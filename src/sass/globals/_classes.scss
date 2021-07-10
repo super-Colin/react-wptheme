@@ -1,0 +1,48 @@
+// Classes
+
+// Make element invisible to the screen and no longer effect page flow,
+// but leave content accessible to screen reader 
+.accessibleDisplayNone{
+    display: none;
+    clip-path: 1px 1px;
+}
+
+.bgBrand{background-color: $color_main;}
+.colorBrand{color: $color_main;}
+.colorWhite{color: $color_white;}
+.colorBlack{color: $color_black;}
+
+.heading,
+.heading-accent{
+    font-family: $type_heading-font-family-main;
+    font-weight: $type_heading-font-weight-main;
+}
+.heading-accent {
+    font-family: $type_heading-font-family-accent;
+}
+.link{
+    cursor: pointer;
+    color: $color_link-main;
+    text-decoration: underline;
+}
+
+.full-img,
+.full-img-contain,
+.full-img-cover {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+.full-img-contain{object-fit: contain;}
+.full-img-cover{object-fit: cover;}
+
+
+
+
+.clearfix::after{
+    content:'';
+    clear: both;
+    display: table;
+}
+
+

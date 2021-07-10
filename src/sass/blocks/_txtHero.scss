@@ -1,0 +1,90 @@
+
+.txtHero-container{
+    display: flex;
+    flex-wrap: wrap;
+
+    margin-bottom: var(--global_spacing-xlarge);
+}
+
+.txtHero-txtSide{
+    padding: 0 var(--global_spacing-gutters);
+    margin-top: var(--global_spacing-large);
+}
+.txtHero-container *+* {
+    margin-top: var(--global_spacing-owl);
+    line-height: 1.35em;
+}
+.txtHero-txtSide-title{
+    font-size: var(--global_fontsize-title-medium);
+}
+.txtHero-txtSide-title,
+.txtHero-container p{
+    margin-left: var(--global_spacing-gutters);
+    margin-right: var(--global_spacing-gutters);
+}
+
+
+.txtHero-imgSide{
+    // display: none;
+    width: 100%;
+}
+.txtHero-imgSide img{
+    width: 100%;
+    min-height: 40vh;
+    height: auto;
+    max-height: 60vh;
+    object-fit: cover;
+}
+
+
+@media(min-width: $breakpoint_for-tablet){
+    .txtHero-container {
+        // flex-wrap: nowrap;
+        display: block;
+        padding: 0 var(--global_spacing-gutters);
+    }
+    .txtHero-imgSide{
+        width: 50%;
+        float: right;
+        padding: 0 0 var(--global_spacing-small) var(--global_spacing-small);
+    }
+    .txtHero-txtSide-title,
+    .txtHero-container p {
+        margin-left: 0;
+        margin-right: 0;
+    }
+    .txtHero-txtSide-title {
+        font-size: var(--global_fontsize-title-large);
+    }
+}
+@media(min-width: $breakpoint_for-tabletlandscape) {
+    .txtHero-imgSide {
+        // width: 50%;
+        padding: 0 0 var(--global_spacing-medium) var(--global_spacing-medium);
+    }
+    .txtHero-txtSide-title {
+        font-size: var(--global_fontsize-title-xlarge);
+        margin-bottom: var(--global_spacing-xlarge);
+    }
+    .txtHero-container p {
+        line-height: 1.5em;
+        letter-spacing: 0.35px;
+        font-size: var(--global_fontsize-body-medium);
+    }
+}
+@media(min-width: $breakpoint_for-desktop) {
+    .txtHero-container {
+        margin-bottom: var(--global_spacing-xxlarge);
+    }
+    .txtHero-imgSide{
+        width: 45%;
+    }
+    .txtHero-txtSide-title {
+        font-size: var(--global_fontsize-title-xxlarge);
+    }
+    .txtHero-container p {
+        line-height: 1.4em;
+        letter-spacing: 0.45px;
+        font-size: var(--global_fontsize-body-large);
+    }
+}

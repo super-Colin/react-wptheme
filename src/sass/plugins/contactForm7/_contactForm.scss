@@ -1,0 +1,17 @@
+
+.wpcf7{
+    padding: var(--global_spacing-small) var(--global_spacing-gutters);
+}
+.wpcf7 p,
+.wpcf7 span,
+.wpcf7 textarea,
+.wpcf7 input{
+    display: inline-block;
+    max-width: 100%;
+}
+
+.wpcf7-submit{
+    // @include button_classic;
+    padding: var(--global_spacing-small);
+    margin-top: var(--global_spacing-medium);
+}

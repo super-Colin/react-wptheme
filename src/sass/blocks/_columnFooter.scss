@@ -1,0 +1,193 @@
+
+$columnFooter_expanded-breakpoint: $breakpoint_for-desktop;
+$breakpoints: new-breakpoint('for-columnFooter-expanded', $columnFooter_expanded-breakpoint);
+
+
+.columnFooter_container{
+    @include block_margin-y-top;
+    @include block_padding-full;
+    background-color: $color_main;
+    color:$color_white;
+    text-align: center;
+
+    // *+li,
+    *+*{
+        margin-top: $spacing_owl;
+    }
+    a {
+        color: $color_white;
+        text-align: center;
+        text-decoration: none;
+        font-size: $type_heading-font-size-small;
+    }
+}
+
+.columnFooter_inner{
+    @include block_maxWidth;
+
+    @include breakpoint('for-columnFooter-expanded'){
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
+
+.columnFooter_column{
+    @include block_padding-y;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: $spacing_owl;
+
+    @include breakpoint('for-columnFooter-expanded'){
+        @include block_padding-x;
+        margin-top: 0;
+        padding-top:0;
+        padding-bottom:0;
+        width: 30%;
+    }
+}
+
+.columnFooter_column-first{
+    margin-top: 0;
+
+    @include breakpoint('for-tablet') {
+        // justify-content: space-around;
+    }
+
+    @include breakpoint('for-columnFooter-expanded') {
+        justify-content: space-between;
+        padding-left:0;
+    }
+}
+
+.columnFooter_column-first-home{
+    @include breakpoint('for-tablet') {
+        display: none;
+    }
+    @include breakpoint('for-columnFooter-expanded') {
+        display: block;
+    }
+}
+
+.columnFooter_column-middle{
+    border-top: 2px solid $color_gray-700;
+    border-bottom: 2px solid $color_gray-700;
+    li{
+        a{
+            font-size: $type_body-font-size-medium;
+            color: $color_muted-light;
+        }
+    }
+
+    @include breakpoint('for-columnFooter-expanded'){
+        border: unset;
+        border-left: 2px solid $color_gray-700;
+        border-right: 2px solid $color_gray-700;
+    }
+}
+.columnFooter_column-middle-title{
+    font-size: $type_heading-font-size-medium;
+}
+
+
+.columnFooter_column-last{
+
+    @include breakpoint('for-columnFooter-expanded') {
+        width: 40%;
+        padding-right: 0;
+        display: flex;
+        flex-direction: row-reverse;
+    }
+}
+
+.columnFooter_column-socialDetails{
+
+    p{
+        display: none;
+    }
+
+    @include breakpoint('for-columnFooter-expanded') {
+
+        margin-top: 0;
+        margin-right: $spacing_block-margin-x-gutter;
+        p {
+            display: block;
+        }
+    }
+}
+
+.columnFooter_column-last-links{
+    display: flex;
+    flex-direction: column;
+    @include breakpoint('for-columnFooter-expanded') {
+        justify-content: space-between !important;
+    }
+}
+
+.columnFooter_column-socialDetails-links{
+    display: flex;
+    justify-content: space-around;
+
+    a{
+        margin-top: 0;
+    }
+
+    @include breakpoint('for-columnFooter-expanded') {
+        justify-content: space-between !important;
+        
+        a{
+            margin-top: 0;
+        }
+    }
+}
+.columnFooter_container svg{
+    max-width: 3.2rem;
+    max-height: 3.2rem;
+    path{
+        fill:$color_white;
+    }
+}
+
+
+.columnFooter_column-middle ul,
+.columnFooter_column-last-links,
+.columnFooter_column-first{
+    @include breakpoint('for-tablet') {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+
+        a {
+            margin-top: 0;
+        }
+    }
+    @include breakpoint('for-columnFooter-expanded') {
+        flex-direction: column;
+
+
+    }
+}
+.columnFooter_column{
+
+    @include breakpoint('for-columnFooter-expanded') {
+        *{
+            justify-content: start;
+        }
+        a, p, li{
+            text-align: left;
+        }
+    }
+}
+
+.columnFooter_column-middle ul{
+
+    @include breakpoint('for-tablet') {
+        height: 100%;
+        justify-content: space-around;
+
+        li {
+            margin-top: 0;
+        }
+    }
+}

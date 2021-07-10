@@ -1,0 +1,56 @@
+
+$infoColumns_expanded-breakpoint : $breakpoint_for-tabletlandscape;
+$breakpoints: new-breakpoint('for-infoColumns-expanded', $infoColumns_expanded-breakpoint);
+
+
+.infoColumns_container{
+    @include block_margin-y;
+    @include block_padding-full;
+    // display: flex;
+    // flex-direction: column;
+    background-color: $color_gray-500;
+
+    // @include breakpoint('for-infoColumns-expanded') {
+    //     flex-direction: row;
+    //     justify-content: space-between
+    // }
+}
+.infoColumns_innerContainer{
+    @include block_maxWidth;
+    display: flex;
+    flex-direction: column;
+
+    @include breakpoint('for-infoColumns-expanded') {
+        flex-direction: row;
+        justify-content: space-between
+    }
+}
+
+.infoColumns_column{
+    @include block_padding-y;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+
+    svg{
+        max-height: 4rem;
+        max-width: 4rem;
+
+        path{
+            // fill: $color.theme.main-light;
+            fill: $color_main;
+        }
+    }
+
+    @include breakpoint('for-infoColumns-expanded') {
+        // @include block_margin-x
+        width: 30%;
+    }
+}
+.infoColumns_column * + *{
+    margin-top: $spacing_owl;
+}
+.infoColumns_column-heading{
+    color:$color_main;
+}

@@ -1,0 +1,20 @@
+.bannerCta_container{
+    @include block_margin-y-bottom;
+    @include block_padding-full;
+    background-color: $color_main;
+}
+.bannerCta_inner{
+    @include block_maxWidth;
+    text-align: center;
+}
+
+.bannerCta_info{
+    color: $color_white;
+}
+
+.bannerCta_cta{
+    display: block;
+    color: $color_white;
+    margin-top: $spacing_medium;
+    font-size: $type_body-font-size-large;
+}

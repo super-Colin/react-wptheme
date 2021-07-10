@@ -1,46 +1,30 @@
 <?php 
 
-
-// function sc_importMenusToJs(){
-//     echo "~~~IMPORT MENUS FUNCTION~";
-
-//     $menuJsPath = get_template_directory_uri() . '/react-src/public/sc_getMenus.js';
-//     echo '<br />' . $menuJsPath . '<br />';
-
-//     wp_enqueue_style( 'sc-style', get_stylesheet_uri(), array(), '1.0.0' );
-//     wp_enqueue_script('sc_getMenus', $menuJsPath, '1', false);
-    
-//     $menus = wp_get_nav_menus( array('primary') );
-
-//     wp_add_inline_script( 'sc_getMenus', 'const PHP_getMenus = ' . json_encode( array(
-//         'menus' => $menus,
-//         'otherParam' => 'some value',
-//     ) ), 'before' );
-
-//     echo "~IMPORT MENUS FUNCTION~~~";
-// }
+function register_sc_menus() {
+    register_nav_menus(
+        array(
+        'header-menu' => __( 'Header Menu' ),
+        'footer-menu' => __( 'Footer Menu' )
+        )
+    );
+}
+add_action( 'init', 'register_sc_menus' );
 
 function sc_importMenusToJs(){
-
-    $menuJsPath = get_template_directory_uri() . '/sc_getMenus.js';
-    // printf(get_template_directory_uri());
-    // echo '<br />';
-    // printf($menuJsPath);
+    $menuJsPath = get_template_directory_uri() . '/sc_importMenusToJs.js';
+    $menuLocations = get_nav_menu_locations( );
 
     wp_enqueue_style( 'sc_style', get_stylesheet_uri(), array(), '1.0.0' );
     wp_enqueue_script('sc_getMenus', $menuJsPath, '1', false);
-    
-    $menus = wp_get_nav_menus( array('primary') );
 
-    wp_add_inline_script( 'sc_getMenus', 'const PHP_getMenus = ' . json_encode( array(
-        'menus' => $menus,
-        'otherParam' => 'some value',
+    wp_add_inline_script( 'sc_getMenus', 'window.PHP_MENUS = ' . json_encode( array(
+        // 'menus' => wp_get_nav_menus( ),
+        // 'menu_locations' => get_nav_menu_locations( ),
+        'header_menu_items' => wp_get_nav_menu_items( $menuLocations['header-menu'] ),
+        'footer_menu_items' => wp_get_nav_menu_items( $menuLocations['footer-menu'] ),
     ) ), 'before' );
-
 }
-// add_action( "wp_enqueue_scripts", "sc_importMenusToJs");
 add_action( 'wp_enqueue_scripts', 'sc_importMenusToJs' );
-// sc_importMenusToJs();
 
 
 

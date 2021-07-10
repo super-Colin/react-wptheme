@@ -16,13 +16,14 @@ const routes =(
   {/* basname is only for local dev XAMPP environment REMOVE before building for prod */}
   {/* https://reactrouter.com/web/api/BrowserRouter/basename-string */}
     <Switch>
-      <Route exact path="/" component={Archive} />
+      <Route exact path="/" component={Home} />
       <Route path="/home" component={Home} />
       <Route path="/about" component={About} />
       <Route path="/archive" component={Archive} />
+      <Route path="/:slug" component={Single} />
       <Route path="/page/:slug" component={Single} />
       <Route path="/post/:slug" component={Single} />
-      
+
       <Redirect exact from='/post/' to='/' />
       <Redirect exact from='/page/' to='/' />
       <Redirect exact from='/search/' to='/' /> 

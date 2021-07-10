@@ -1,0 +1,135 @@
+
+$flatHeader_bg:  $color_white;
+$flatHeader_height:  4.2rem;
+$flatHeader_padding-x: $spacing_gutter-page;
+$flatHeader_padding-y: $spacing_small;
+
+// Create a breakpoint for the header to transition away from a mobile dropdown menu
+$flatHeader_expanded-breakpoint : $breakpoint_for-tabletlandscape;
+$breakpoints: new-breakpoint('for-flatHeader-expanded', $flatHeader_expanded-breakpoint);
+
+.flatHeader_container{
+    position: relative;
+    max-width: 100%;
+    height: $flatHeader_height;
+    padding: $flatHeader_padding-y $flatHeader_padding-x;
+    background-color: $flatHeader_bg;
+
+    display: flex;
+    justify-content: center;
+    box-shadow: 0 4px 4px $color_gray-500;
+    @include breakpoint('for-flatHeader-expanded'){
+        min-height: $flatHeader_height;
+        height: unset;
+        justify-content: space-between;
+    }
+}
+
+.flatHeader_logo{
+    display: block;
+    height: 100%;
+    @include breakpoint('for-flatHeader-expanded'){
+        height: $flatHeader_height;
+    }
+}
+.flatHeader_logo a{
+    display: block;
+    height: 100%;
+    text-decoration: none;
+}
+.flatHeader_logo img{
+    height: 100%;
+    max-height: 100%;
+}
+.flatHeader_logo-square{
+    display: none;
+    @include breakpoint('for-flatHeader-expanded') {
+        display: block;
+    }
+}
+.flatHeader_logo-wide{
+    @include breakpoint('for-flatHeader-expanded') {
+        display: none;
+    }
+}
+.flatHeader_nav-container{
+    display: flex;
+    @include breakpoint('for-flatHeader-expanded') {
+        padding-left: 5vw;
+        width: 100%;
+    }
+    @include breakpoint('for-desktop') {
+        padding-left: 12vw;
+    }
+}
+
+.flatHeader_nav-links{
+    padding: 0;
+    width: 100%;
+    height: calc(100vh - #{$flatHeader_height});
+    max-height: 0;
+
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: $zindex_ui-nav;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    background-color: $color_main;
+    overflow: hidden;
+    transition: 
+        max-height $timing_transitionduration-small,
+        padding $timing_transitionduration-small;
+
+    @include breakpoint('for-flatHeader-expanded') {
+        background-color: unset;
+        position: static;
+        height: 100%;
+        max-height: unset;
+        min-width: 100%;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+.flatHeader_nav-active _flatHeader_nav-links {
+    padding: $spacing_small $spacing_medium;
+    max-height: calc(100vh - #{$flatHeader_height});
+}
+.flatHeader_nav-links a{
+    color: $color_white;
+    font-size: $type_heading-font-size-large;
+    text-decoration: none;
+    text-align: center;
+
+    @include breakpoint('for-flatHeader-expanded') {
+        font-size: $type_heading-font-size-medium;
+        color: $color_black;
+    }
+}
+.flatHeader_nav-links a.flatHeader_donate-link {
+    @include breakpoint('for-flatHeader-expanded') {
+        padding: $button_padding-main;
+        background-color: $color_main;
+        
+        border-radius: $button_radius-main;
+        color: $flatHeader_bg;
+    }
+}
+
+.flatHeader_nav-button {
+    // height: 100%;
+    width: ($flatHeader_height - $flatHeader_padding-y * 2);
+    // padding: $global_spacing-xsmall;
+    padding: 0_1rem;
+    position: absolute;
+    top: $flatHeader_padding-y;
+    right: $flatHeader_padding-x;
+
+    @include breakpoint('for-flatHeader-expanded') {
+        display: none;
+    }
+}

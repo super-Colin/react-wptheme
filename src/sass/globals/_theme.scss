@@ -1,0 +1,42 @@
+
+// Variables that are likely to be adjusted for each new theme
+// these are also defaults... so don't delete them!
+
+
+
+// COLORS
+$theme_color-main: #1A7E13;
+$theme_color-main-light: #4E9D19;
+$theme_color-main-dark: #2E502F;
+
+$theme_color-accent: #1A7E13;
+$theme_color-accent-light: #1A7E13;
+$theme_color-accent-dark: #1A7E13;
+
+$theme_color-link-main: '';
+$theme_color-link-visited: '';
+
+
+// TYPE
+$theme_link-font-family-main: '';
+
+$theme_heading-font-family-main: 'Merriweather', serif;
+$theme_heading-font-family-accent: 'Merriweather', serif; 
+$theme_heading-font-weight-light: 300;
+$theme_heading-font-weight-main: 400; // Incase your font's normal weight is 500
+$theme_heading-font-weight-bold: 700; 
+
+
+$theme_body-font-family-main: 'Open Sans', sans-serif;
+$theme_body-font-family-accent: 'Open Sans', sans-serif;
+$theme_body-font-weight-light: 300;
+$theme_body-font-weight-main: 400;
+$theme_body-font-weight-bold: 700;
+
+
+// OTHERS --- May not have a corresponding "main" property in a category
+$theme_button-radius: 4px; // Is main button radius
+
+$theme_border-width: 2px; 
+$theme_border-radius: 4px; 
+

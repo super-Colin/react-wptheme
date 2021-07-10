@@ -1,0 +1,142 @@
+// Mixins
+
+// Make element invisible to the screen and no longer effect page flow,
+// but leave content accessible to screen reader 
+@mixin accessibleDisplayNone{
+    display: none;
+    clip-path: 1px 1px;
+}
+
+@mixin block_maxWidth{
+    @include breakpoint('for-desktop'){
+        max-width: 94vw;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    @include breakpoint('for-desktop4k'){
+        max-width: 85vw;
+    }
+}
+
+@mixin block_margin-full{
+    margin: $spacing_block-margin-y-small $spacing_block-margin-x-gutter;
+    
+    @include breakpoint('for-tablet'){
+        margin: $spacing_block-margin-y-medium $spacing_block-margin-x-gutter;
+    }
+    @include breakpoint('for-desktop'){
+        max-width: 94vw;
+        margin: $spacing_block-margin-y-large $spacing_block-margin-x-gutter;
+    }
+    @include breakpoint('for-desktop4k'){
+        max-width: 85vw;
+    }
+}
+
+@mixin block_margin-y-top{
+    margin-top: $spacing_block-margin-y-small;
+
+    @include breakpoint('for-tablet') {
+        margin-top: $spacing_block-margin-y-medium;
+    }
+    @include breakpoint('for-desktop') {
+        margin-top: $spacing_block-margin-y-large;
+    }
+}
+@mixin block_margin-y-bottom{
+    margin-bottom: $spacing_block-margin-y-small;
+
+    @include breakpoint('for-tablet') {
+        margin-bottom: $spacing_block-margin-y-medium;
+    }
+    @include breakpoint('for-desktop') {
+        margin-bottom: $spacing_block-margin-y-large;
+    }
+}
+@mixin block_margin-y{
+    @include block_margin-y-top;
+    @include block_margin-y-bottom;
+}
+
+
+@mixin block_margin-x {
+    margin-left: $spacing_block-margin-x-gutter;
+    margin-right: $spacing_block-margin-x-gutter;
+
+    @include breakpoint('for-desktop') {
+        max-width: 90vw;
+        // margin-left: auto;
+        // margin-right: auto;
+    }
+    @include breakpoint('for-desktop4k') {
+        max-width: 85vw;
+    }
+}
+
+@mixin block_padding-full{
+    padding: $spacing_block-padding-y-small $spacing_block-padding-x-small;
+
+    @include breakpoint('for-tablet') {
+        padding: $spacing_block-padding-y-medium $spacing_block-padding-x-medium;
+    }
+    @include breakpoint('for-desktop') {
+        padding: $spacing_block-padding-y-large $spacing_block-padding-x-large;
+    }
+}
+
+@mixin block_padding-y-top {
+    padding-top: $spacing_block-padding-y-small;
+    @include breakpoint('for-tablet') {
+        padding-top: $spacing_block-padding-y-medium;
+    }
+    @include breakpoint('for-desktop') {
+        padding-top: $spacing_block-padding-y-large;
+    }
+}
+@mixin block_padding-y-bottom {
+    padding-bottom: $spacing_block-padding-y-small;
+    @include breakpoint('for-tablet') {
+        padding-bottom: $spacing_block-padding-y-medium;
+    }
+    @include breakpoint('for-desktop') {
+        padding-bottom: $spacing_block-padding-y-large;
+    }
+}
+
+@mixin block_padding-y {
+    @include block_padding-y-top;
+    @include block_padding-y-bottom;
+}
+
+@mixin block_padding-x {
+    padding-left: $spacing_block-padding-x-small;
+    padding-right: $spacing_block-padding-x-small;
+
+    @include breakpoint('for-tablet') {
+        padding-left: $spacing_block-padding-x-medium;
+        padding-right: $spacing_block-padding-x-medium;
+    }
+    @include breakpoint('for-desktop') {
+        padding-left: $spacing_block-padding-x-large;
+        padding-right: $spacing_block-padding-x-large;
+    }
+}
+
+
+
+// @mixin hexagonClipPath1{
+//     clip-path: polygon(50% 0%, 94-5% 25%, 94-5% 75%, 50% 100%, 6-5% 75%, 6-5% 25%);
+// }
+// @mixin hexagonClipPath2{
+//     clip-path: polygon(25% 6-5%, 75% 6-5%, 100% 50%, 75% 94-5%, 25% 94-5%, 0% 50%);
+// }
+
+
+
+// // Maintained in the variables/breakpoint file as I felt it was more of a utility than a style mixin
+//     // @mixin breakpoint($breakpoint){
+//     //     $value: map-get( $breakpoints, $breakpoint);
+// //         @media(min-width: $value){
+// //             @content;
+//     //     }
+//     // } 

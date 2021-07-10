@@ -4,7 +4,7 @@ import ThePost from './ThePost';
 
 const TheLoop = ({ context }) => {
 
-  console.log('THE LOOP CONTEXT: ', context);
+  // console.log('THE LOOP CONTEXT: ', context);
     const posts = () => context.posts;
     const pos = posts();
   

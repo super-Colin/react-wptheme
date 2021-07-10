@@ -1,0 +1,48 @@
+
+// These are just some generic styles that you may or may not prefer
+
+
+// body * + * { margin-top: 1.3em; } // Owl selector for easy margins
+
+// a { text-decoration: none; } // Remove default underline from links
+
+ul { list-style: none; } // Remove default bullet point from ul
+
+img{max-width: 100%; height: auto;}
+
+body{ font-family: $type_body-font-family-main; }
+h1,h2,h3,h4,h5,h6{ font-family: $type_heading-font-family-main; }
+
+// Get rid of admin bar on frontend of wordpress site for logged in users
+#wpadminbar{display: none;}
+html{margin-top: 0 !important;}
+
+
+// Set a responsive root font size for a more fluid rem unit
+:root,
+html,
+body{
+    // Give less and less weight to screen sizes as they increase
+    // Reset base rem unit to 16px at each breakpoint
+
+        // @debug #{6 / ( 320 / 100)}; // === remainder of 16px base / (breakpoint / 100)
+    font-size: calc(10px + 1.87vw); // 16.2px at 320px VW 
+
+    @include breakpoint('for-tablet'){
+        // @debug #{4 / ($breakpoint.for-tablet') / 100px)};
+        font-size: calc(12px + 0.66vw); // 600px
+    }
+    @include breakpoint('for-tabletLandscape'){
+        // @debug #{3 / ($breakpoint.for-tabletLandscape') / 100px)};
+        font-size: calc(13px + 0.33vw); // 600px
+    }
+    @include breakpoint('for-desktop'){
+        // @debug #{2 / ($breakpoint.for-desktop') / 100px)};
+        font-size: calc(14px + 0.17vw);
+    }
+    @include breakpoint('for-desktop4k'){
+        // @debug #{1 / ($breakpoint.for-desktop4k') / 100px)};
+        font-size: calc(15px + 0.056vw);
+    }
+}
+

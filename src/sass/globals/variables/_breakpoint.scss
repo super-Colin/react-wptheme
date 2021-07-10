@@ -1,0 +1,51 @@
+
+/* ==-- Break Points--== */
+// all break points are used as min-width
+// You're starting at 0
+$breakpoint_for-tablet:600px;
+$breakpoint_for-tabletlandscape:900px;
+$breakpoint_for-desktop:1180px;
+$breakpoint_for-desktop4k:1760px;
+
+
+
+
+
+// Kept global for breakpoint mixin
+$breakpoints:(
+    'for-tablet': $breakpoint_for-tablet,
+    'for-tabletLandscape': $breakpoint_for-tabletlandscape,
+    'for-desktop': $breakpoint_for-desktop,
+    'for-desktop4k': $breakpoint_for-desktop4k
+);
+
+// Turn media queries into mixins based on these ^ variables / creates new breakpoint mixins
+// Shouts to: https://www.sitepoint.com/managing-responsive-breakpoints-sass/
+@mixin breakpoint($breakpoint){
+    $value: map-get( $breakpoints, $breakpoint);
+    @if $value != null{
+        @media(min-width: $value){
+            @content;
+        }
+    }
+    @else{
+        @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. " + "Please make sure it is defined in `$breakpoints` map.";
+    }
+}
+
+@function new-breakpoint($breakpointName, $breakpointValue) {
+    $newBreakpoint: ($breakpointName : $breakpointValue);
+    $breakpoints: map-merge($newBreakpoint, $breakpoints);
+    @return $breakpoints;
+}
+// @debug new-breakpoint('for-thisComponentChange', 600px);
+
+// used like so
+// .ZrandomComponent{
+//     width: auto;
+//     @include breakpoint('for-thisComponentChange'){color:red;}
+//     @include breakpoint('for-tablet'){width:50%;}
+//     @include breakpoint('for-tabletLandscape'){width:75%;}
+//     @include breakpoint('for-desktop'){width:100%;}
+// }
+

@@ -20,15 +20,14 @@ const Header = ({context}) => {
   // convert url to path for Links
   const pageUrlToPath = (pageURL) => {
     let domainRelativePath = pageURL.split(domainPrefix)[1];
-    // console.log( 'pageUrl, prefix, split, domainRelativePath is: ', pageURL, domainPrefix, pageURL.split(domainPrefix), domainRelativePath);
     return domainRelativePath;
   }
 
-  // Get PHP Menus
+  // Get Wordpress PHP Menus object from gloabal variable inserted by sc_importMenusToJs() in functions.php
   let PHP_MENUS = GET_PHP_MENUS();
   let headerMenuItems = PHP_MENUS['header_menu_items'];
 
-
+  // update rest state for appropiate api calls for content
   function setRestType(e){
     let restType = e.target.dataset['posttype'];
     context.setRestType(restType);
@@ -39,6 +38,7 @@ const Header = ({context}) => {
   return (
     <div>
       <ul>
+        {/* notice data-posttype in ALL Links */}
         <li><Link to="/archive" data-posttype='component' onClick={setRestType} >Archive</Link></li>
 
         {headerMenuItems.map((menuItem)=>{

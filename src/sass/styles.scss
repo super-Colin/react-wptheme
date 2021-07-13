@@ -1,0 +1,11 @@
+// Main
+
+@import './globals/_globals';             //variables, theme colors, mixins, screen-size breakpoints
+@import './base/_base';                   // normalize, apply some preferenctial styles(vw based rem)
+@import './components/_components';       // ui components, buttons, icons, etc
+@import './blocks/_blocks';               // block-based components, html containers, etc
+// @import './plugins/_plugins';
+
+// SASS in this react theme is compiled into public folder as "style.css"
+
+

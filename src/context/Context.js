@@ -53,7 +53,7 @@ export class Provider extends React.Component {
   }
 
   
-  setRestType(type){
+  setRestType(type=false){
     // let slug = this.props.router.match.params.slug ? this.props.router.match.params.slug : '';
     // console.log('setRestType: ', type, 'slug: ', slug);
     console.log('setRestType: ', type);

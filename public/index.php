@@ -31,7 +31,7 @@
         work correctly both with client-side routing and a non-root public URL.
         Learn how to configure a non-root public URL by running `npm run wpbuild`.
     -->
-    <title>React WordPress Theme</title>
+    <title>SC React Theme</title>
     <?php wp_head(); ?>
 </head>
     <body>

@@ -1,8 +1,9 @@
 import React from 'react'
 import Header from "../partials/Header";
 import Footer from "../partials/Footer";
+import WithConsumer from '../context/WithConsumer';
 
-const About = () => {
+const About = ({context}) => {
   return (
     <div>
       <Header />
@@ -12,4 +13,4 @@ const About = () => {
   )
 }
 
-export default About
+export default WithConsumer(About);

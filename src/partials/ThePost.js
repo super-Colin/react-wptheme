@@ -6,7 +6,7 @@ import PostMeta from './PostMeta';
 const ThePost = ({index,context}) => {
 
     const posts = () => context.posts;
-    console.log( 'ThePost posts: ', posts());
+    // console.log( 'ThePost posts: ', posts());
     const item = posts()[index];  
     
     let linkPrefix = item.type === 'page' ? '/page/' : '/post/';

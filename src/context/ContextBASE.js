@@ -11,12 +11,11 @@ export class Provider extends React.Component {
   constructor(props) {
     super(props); 
 
-    let restType = 'page';
+    let restType = this.getRestType(props.router.match.path);
     let route = props.router.match.path;
     let slug = props.router.match.params.slug ? props.router.match.params.slug : '';
     let term = props.router.match.params.term ? props.router.match.params.term : '';
     let catid = props.router.match.params.catid ? props.router.match.params.catid : ''; 
-    // let currentPagePostType = ;
 
     this.state = {
       term : term,
@@ -24,7 +23,6 @@ export class Provider extends React.Component {
       restType : restType,
       catid : catid,
       route : route,
-      // currentPagePostType : currentPagePostType,
       posts : [], 
       comments : [],
       currentPage : 1, 
@@ -37,119 +35,55 @@ export class Provider extends React.Component {
       },
       appError : '',
       commentErrors : [],
-      //global methods      
+      //global methods
       nextClicked : this.nextClicked.bind(this), 
       previousClicked : this.previousClicked.bind(this), 
       submitSearch : this.submitSearch.bind(this), 
       updateTerm : this.updateTerm.bind(this), 
       submitComment : this.submitComment.bind(this), 
       updateCommentFields : this.updateCommentFields.bind(this),
-      updateCommentErrors : this.updateCommentErrors.bind(this),
-
-      setRestType : this.setRestType.bind(this),
-
+      updateCommentErrors : this.updateCommentErrors.bind(this)
     };
-
+ 
   }
 
-  
-  setRestType(type){
-    // let slug = this.props.router.match.params.slug ? this.props.router.match.params.slug : '';
-    // console.log('setRestType: ', type, 'slug: ', slug);
-    console.log('setRestType: ', type);
-    this.setState({
-      restType : type,
-      // slug : slug
-    })
+  getRestType (path){
+    let restType = 'post';     
+    switch(path){
+      case '/page/:slug':
+        restType = 'page';
+        break;
+      case '/search/:term':
+        restType = 'search';
+        break;
+      case '/category/:catid':
+        restType = 'category';
+        break;
+      case '/post/:slug':
+      default:
+        restType = 'post';
+        break;
+    }
+    return restType;
   }
 
-
-
-  componentDidMount(){
-    let slug = this.props.router.match.params.slug ? this.props.router.match.params.slug : '';
-    console.log('componentDidMount: ', this.buildUrl(slug) );
-    this.getPosts(this.buildUrl(slug));
+  componentDidMount(){   
+    this.getPosts(this.buildUrl());      
   }
 
   componentDidUpdate(prevProps){ 
-    let slug = this.props.router.match.params.slug ? this.props.router.match.params.slug : '';
     if(prevProps.router.location.pathname !== this.props.router.location.pathname){  
       let curProps = this.props.router.match;       
       this.setState({
         currentPage : 1, 
-        slug: slug,
+        restType : this.getRestType(curProps.path),
         catid : curProps.params.catid ? curProps.params.catid : ''
-      },
-      function(){
-        let url = this.buildUrl(slug)
-        let results = this.getPosts(url);
-        // console.log('componentDidUpdate url: ', this.buildUrl() );
-        console.log('componentDidUpdate results: ', results, 'url: ', url );
-        // this.getPosts(this.buildUrl()); 
-        
-        return results
+      },function(){
+        this.getPosts(this.buildUrl()); 
       })
       
     } 
   }
-
-  buildUrl(slug){
-    // let url = '/wp-json/wp/v2/'; // PRODUCTION
-    let url = '/wtp' + '/wp-json/wp/v2/'; // DEV ENV ONLY
-    switch(this.state.restType){      
-      case 'page':
-        console.log('buildUrl SWITCH: page');
-        url += 'pages/?slug=';
-        url += this.state.slug
-      break;
-      case 'search': 
-        console.log('buildUrl SWITCH: search');
-        url += 'search/?s=';
-        url += this.state.term;
-        url += '&page=' + this.state.currentPage;
-      break;
-      case 'category': 
-        console.log('buildUrl SWITCH: category');
-        url += 'posts?categories=';
-        url += this.state.catid;
-        url += '&page=' + this.state.currentPage;
-      break;      
-      case 'post': 
-      default:      
-        console.log('buildUrl SWITCH: default');
-        // url += this.state.slug ? 'posts/?slug=' + this.state.slug : 'posts/?page=' + this.state.currentPage;
-        url += slug ? 'posts/?slug=' + slug : 'posts/?page=' + this.state.currentPage;
-        // url += this.state.restType + 's/' +
-        break;      
-    }
-    return url;
-  }
-
-
-  getPosts (url){
-    let self = this;
-    
-    Axios.get(url).then((response)=>{
-      console.log('getPosts url, response.data: ', url, response.data);
-      self.setState({
-        posts : response.data, 
-        totalPages : response.headers['x-wp-totalpages']
-      },
-      // function(){          
-      //   //get comments if post, and post array is not empty       
-      //   if(self.state.route === '/:slug' 
-      //     && self.state.posts[0]){           
-      //     self.getComments(self.state.posts[0].id);
-      //   }  
-      // }
-      )
-      console.log('~~~~~~~~~~~~~~~~~~~~~~~~~');
-    }).catch(function(error){
-      console.log(error);
-      self.appError = 'An unexpected error occurred';
-    });  
-  }
-
 
   updateTerm (term){
     this.setState({
@@ -211,17 +145,65 @@ export class Provider extends React.Component {
 
   }
 
-  // getComments(id){
-  //   let url = '/wp-json/wp/v2/comments?post=' + id;
-  //   let self = this;
-  //   Axios.get(url).then((response)=>{       
-  //     self.setState({
-  //       comments : response.data 
-  //     })      
-  //   }).catch(function(error){
-  //     console.log(error);
-  //   }); 
-  // }
+  buildUrl(){
+    let url = '/wp-json/wp/v2/';    
+    switch(this.state.restType){      
+      case 'page': 
+        url += 'pages/?slug=';
+        url += this.state.slug
+      break;
+      case 'search': 
+        url += 'search/?s=';
+        url += this.state.term;
+        url += '&page=' + this.state.currentPage;
+      break;
+      case 'category': 
+        url += 'posts?categories=';
+        url += this.state.catid;
+        url += '&page=' + this.state.currentPage;
+      break;      
+      case 'post': 
+      default:      
+        // url += this.state.slug ? 'posts/?slug=' + this.state.slug : 'posts/?page=' + this.state.currentPage;
+        url += this.state.slug ? 'posts/?slug=' + this.state.slug : 'posts/?page=' + this.state.currentPage;
+        break;      
+    }
+
+    console.log('buildUrl returning: ', url);
+    return url;
+  }
+
+  getComments(id){
+    let url = '/wp-json/wp/v2/comments?post=' + id;
+    let self = this;
+    Axios.get(url).then((response)=>{       
+      self.setState({
+        comments : response.data 
+      })      
+    }).catch(function(error){
+      console.log(error);
+    }); 
+  }
+
+  getPosts (url){
+    let self = this;
+    Axios.get(url).then((response)=>{
+      self.setState({
+        posts : response.data, 
+        totalPages : response.headers['x-wp-totalpages']
+      },function(){          
+        //get comments if post, and post array is not empty       
+        if(self.state.route === '/post/:slug' 
+          && self.state.posts[0]){           
+          self.getComments(self.state.posts[0].id);
+        }  
+      })      
+    }).catch(function(error){
+      console.log(error);
+      self.appError = 'An unexpected error occurred';
+    });  
+  }
+
 
   nextClicked (){ 
     let newPage = this.state.currentPage + 1;    

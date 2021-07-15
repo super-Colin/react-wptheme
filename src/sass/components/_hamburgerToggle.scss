@@ -1,4 +1,4 @@
-
+@use "sass:math";
 /*
 
 Containing element must have a defined width so that this icon can create a square ratio based on width.
@@ -43,7 +43,7 @@ $hamburgertoggle_linethickness: 5px;
 
     // background-color: var(--global_color-black1);
     background-color: sget('color.black');
-    border-radius: #{$hamburgertoggle_linethickness / 2};
+    border-radius: calc(math.div(#{$hamburgertoggle_linethickness}, 2));
     transform-origin: center;
     transition: 
         top sget('timing.transition.duration.medium'),
@@ -56,7 +56,7 @@ $hamburgertoggle_linethickness: 5px;
 }
 // .hamburgerToggle::before{}
 .hamburgerToggle_middleLine{
-    top: calc( 50% - #{$hamburgertoggle_linethickness / 2} );
+    top: calc(50% - math.div(#{$hamburgertoggle_linethickness}, 2));
     right:0;
 }
 .hamburgerToggle::after{
@@ -66,7 +66,7 @@ $hamburgertoggle_linethickness: 5px;
 
 .hamburgerToggle-active .hamburgerToggle::before{
     width: 110%;
-    top: calc(50% - #{$hamburgertoggle_linethickness / 2});
+    top: calc(50% - math.div(#{$hamburgertoggle_linethickness} , 2) );
     transform: rotate(45deg);
 }
 .hamburgerToggle-active .hamburgerToggle_middleLine {
@@ -78,7 +78,7 @@ $hamburgertoggle_linethickness: 5px;
 .hamburgerToggle-active .hamburgerToggle::after {
     width: 110%;
     top: unset;
-    bottom: calc(50% - #{$hamburgertoggle_linethickness / 2});
+    bottom: calc(50% - math.div(#{$hamburgertoggle_linethickness} , 2));
     transform: rotate(-45deg);
 }
 

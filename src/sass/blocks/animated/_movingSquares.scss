@@ -1,4 +1,4 @@
-
+@use "sass:math";
 $numberOfSquares:10; // change in JS as well!
 
 // <section class="movingSquares_container">
@@ -74,9 +74,10 @@ $numberOfSquares:10; // change in JS as well!
 }
 
 @for $i from 1 through $numberOfSquares {
+  $percent: math.div(100, $numberOfSquares);
   .movingSquare_square-#{$i}{
-    top: calc(calc(calc(100 / #{$numberOfSquares} ) * #{$i}) * 1%);
-    // top: (((100 / #{$numberOfSquares} ) * #{$i}) * 1%);
+    top:  calc(calc(#{$percent} * #{$i}) * 1%);
+    // top: ((100% / #{$numberOfSquares} ) * #{$i});
     animation-delay: $i * (-0.15s);
   }
 }

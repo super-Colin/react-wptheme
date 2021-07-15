@@ -11,7 +11,10 @@ export class Provider extends React.Component {
   constructor(props) {
     super(props); 
 
-    let restType = 'page';
+    // let restType = 'code';
+    let restType = this.getRestType(props.router.match.path);
+    let codeCatId = this.getCategoryIdFromName('code');
+    let designCatId = this.getCategoryIdFromName('design');
     let route = props.router.match.path;
     let slug = props.router.match.params.slug ? props.router.match.params.slug : '';
     let term = props.router.match.params.term ? props.router.match.params.term : '';
@@ -19,9 +22,12 @@ export class Provider extends React.Component {
     // let currentPagePostType = ;
 
     this.state = {
+      PHP_VARS : window.PHP_VARS,
       term : term,
       slug : slug,
       restType : restType,
+      codecatid : codeCatId,
+      designcatid : designCatId,
       catid : catid,
       route : route,
       // currentPagePostType : currentPagePostType,
@@ -48,11 +54,23 @@ export class Provider extends React.Component {
 
       setRestType : this.setRestType.bind(this),
       pageUrlToPath : this.pageUrlToPath.bind(this),
-
     };
 
   }
 
+  getCategoryIdFromName(name){
+    let catid = 0;
+    const categories = window.PHP_VARS.categories;
+    // console.log('getCategories ', categories);
+    categories.map(function(category){
+      if(category.slug === name){
+        // console.log('getCategory found: ', category.name);
+        catid = category.term_id;
+      }
+    })
+    console.log('getCategoryIdFromName: ', name, catid);
+    return catid;
+  }
 
   pageUrlToPath = (pageURL) => {
     // let domainRelativePath = pageURL.split(domainPrefix)[1];
@@ -62,7 +80,7 @@ export class Provider extends React.Component {
   getDomainPrefix = ()=>{
     const { pathname } = useLocation();
     let  domainPrefix = "";
-    if(pathname == "/"){
+    if(pathname === "/"){
       domainPrefix =  window.location.href.split('://')[1]; // ["http", "website.com/"]
     }else{
       let domainPrefixMinusHttp = window.location.href.split('://')[1]; // ["http", "website.com/some"]
@@ -92,15 +110,18 @@ export class Provider extends React.Component {
 
   componentDidUpdate(prevProps){ 
     let slug = this.props.router.match.params.slug ? this.props.router.match.params.slug : '';
+    // let catid = this.props.router.match.params.catid ? this.props.router.match.params.catid : '';
     if(prevProps.router.location.pathname !== this.props.router.location.pathname){  
       let curProps = this.props.router.match;       
       this.setState({
         currentPage : 1, 
         slug: slug,
+        // catid: catid,
+        restType : this.getRestType(curProps.path),
         catid : curProps.params.catid ? curProps.params.catid : ''
       },
       function(){
-        let url = this.buildUrl(slug)
+        let url = this.buildUrl(slug);
         let results = this.getPosts(url);
         // console.log('componentDidUpdate url: ', this.buildUrl() );
         console.log('componentDidUpdate results: ', results, 'url: ', url );
@@ -114,7 +135,7 @@ export class Provider extends React.Component {
 
   buildUrl(slug){
     // let url = '/wp-json/wp/v2/'; // PRODUCTION
-    let url = '/wtp' + '/wp-json/wp/v2/'; // DEV ENV ONLY
+    let url = '/wtp/wp-json/wp/v2/'; // DEV ENV ONLY
     switch(this.state.restType){      
       case 'page':
         console.log('buildUrl SWITCH: page');
@@ -127,11 +148,11 @@ export class Provider extends React.Component {
         url += this.state.term;
         url += '&page=' + this.state.currentPage;
       break;
-      case 'category': 
+      case 'code': 
         console.log('buildUrl SWITCH: category');
         url += 'posts?categories=';
         url += this.state.catid;
-        url += '&page=' + this.state.currentPage;
+        // url += '&page=' + this.state.currentPage;
       break;
       case 'post':
       default:
@@ -141,9 +162,32 @@ export class Provider extends React.Component {
         // url += this.state.restType + 's/' +
         break;
     }
+    console.log('BuilUrl : ', url);
     return url;
   }
 
+
+
+
+  getRestType (path){
+    let restType = 'post';     
+    switch(path){
+      case '/page/:slug' || '/code/:slug' || '/design/:slug' :
+        restType = 'page';
+        break;
+      case '/search/:term':
+        restType = 'search';
+        break;
+      case '/code/' || '/design/':
+        restType = 'category';
+        break;
+      case '/post/:slug':
+      default:
+        restType = 'post';
+        break;
+    }
+    return restType;
+  }
 
   getPosts (url){
     let self = this;

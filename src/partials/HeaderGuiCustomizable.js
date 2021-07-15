@@ -25,6 +25,8 @@ const Header = ({context}) => {
 
   // Get Wordpress PHP Menus object from gloabal variable inserted by sc_importMenusToJs() in functions.php
   const PHP_VARS = window.PHP_VARS;
+  let headerMenuLeftItems = PHP_VARS['header_menu_left_items'];
+  let headerMenuRightItems = PHP_VARS['header_menu_right_items'];
 
   // update rest state for appropiate api calls for content
   function setRestType(e){
@@ -39,8 +41,13 @@ const Header = ({context}) => {
     <header id="masthead" className="site-header headerBump_container">
 
       <div className="headerBump_sideMenu headerBump_leftMenu">
-        <Link to="/design" onClick={setRestType} data-posttype='design' >Design</Link>
-        
+        {/* notice data-posttype in ALL Links */}
+        {/* <Link to="/archive" data-posttype='component' onClick={setRestType} >Archive</Link> */}
+        {headerMenuLeftItems.map((menuItem)=>{
+          return (
+              <Link key={menuItem['ID']} to={ context.pageUrlToPath(menuItem['url']) } onClick={setRestType} data-posttype={menuItem['object']} >{menuItem['title']}</Link>
+          )
+        })}
       </div>
       
       <div className="headerBump_bump">
@@ -50,7 +57,11 @@ const Header = ({context}) => {
       </div>
 
       <div className="headerBump_sideMenu headerBump_rightMenu">
-        <Link to="/code" >Code</Link>
+        {headerMenuRightItems.map((menuItem)=>{
+          return (
+              <Link key={menuItem['ID']} to={ context.pageUrlToPath(menuItem['url']) } onClick={setRestType} data-posttype={menuItem['object']} >{menuItem['title']}</Link>
+          )
+        })}
       </div>
     {/* <SearchForm /> */}
 	</header>

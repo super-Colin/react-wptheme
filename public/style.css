@@ -497,13 +497,13 @@ onclick="this.classList.toggle('hamburgerToggle-active')"
   height: 5px;
   width: 100%;
   background-color: sget("color.black");
-  border-radius: 2.5px;
+  border-radius: calc(math.div(5px, 2));
   transform-origin: center;
   transition: top sget("timing.transition.duration.medium"), bottom sget("timing.transition.duration.medium"), left sget("timing.transition.duration.medium"), right sget("timing.transition.duration.medium"), transform sget("timing.transition.duration.medium"), width sget("timing.transition.duration.medium"), border-radius sget("timing.transition.duration.medium");
 }
 
 .hamburgerToggle_middleLine {
-  top: calc( 50% - 2.5px );
+  top: calc(50% - math.div(5px, 2));
   right: 0;
 }
 
@@ -514,7 +514,7 @@ onclick="this.classList.toggle('hamburgerToggle-active')"
 
 .hamburgerToggle-active .hamburgerToggle::before {
   width: 110%;
-  top: calc(50% - 2.5px);
+  top: calc(50% - math.div(5px , 2) );
   transform: rotate(45deg);
 }
 
@@ -528,7 +528,7 @@ onclick="this.classList.toggle('hamburgerToggle-active')"
 .hamburgerToggle-active .hamburgerToggle::after {
   width: 110%;
   top: unset;
-  bottom: calc(50% - 2.5px);
+  bottom: calc(50% - math.div(5px , 2));
   transform: rotate(-45deg);
 }
 
@@ -1239,52 +1239,52 @@ html {
 }
 
 .movingSquare_square-1 {
-  top: calc(calc(calc(100 / 10 ) * 1) * 1%);
+  top: calc(calc(10 * 1) * 1%);
   animation-delay: -0.15s;
 }
 
 .movingSquare_square-2 {
-  top: calc(calc(calc(100 / 10 ) * 2) * 1%);
+  top: calc(calc(10 * 2) * 1%);
   animation-delay: -0.3s;
 }
 
 .movingSquare_square-3 {
-  top: calc(calc(calc(100 / 10 ) * 3) * 1%);
+  top: calc(calc(10 * 3) * 1%);
   animation-delay: -0.45s;
 }
 
 .movingSquare_square-4 {
-  top: calc(calc(calc(100 / 10 ) * 4) * 1%);
+  top: calc(calc(10 * 4) * 1%);
   animation-delay: -0.6s;
 }
 
 .movingSquare_square-5 {
-  top: calc(calc(calc(100 / 10 ) * 5) * 1%);
+  top: calc(calc(10 * 5) * 1%);
   animation-delay: -0.75s;
 }
 
 .movingSquare_square-6 {
-  top: calc(calc(calc(100 / 10 ) * 6) * 1%);
+  top: calc(calc(10 * 6) * 1%);
   animation-delay: -0.9s;
 }
 
 .movingSquare_square-7 {
-  top: calc(calc(calc(100 / 10 ) * 7) * 1%);
+  top: calc(calc(10 * 7) * 1%);
   animation-delay: -1.05s;
 }
 
 .movingSquare_square-8 {
-  top: calc(calc(calc(100 / 10 ) * 8) * 1%);
+  top: calc(calc(10 * 8) * 1%);
   animation-delay: -1.2s;
 }
 
 .movingSquare_square-9 {
-  top: calc(calc(calc(100 / 10 ) * 9) * 1%);
+  top: calc(calc(10 * 9) * 1%);
   animation-delay: -1.35s;
 }
 
 .movingSquare_square-10 {
-  top: calc(calc(calc(100 / 10 ) * 10) * 1%);
+  top: calc(calc(10 * 10) * 1%);
   animation-delay: -1.5s;
 }
 

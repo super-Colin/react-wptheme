@@ -5,24 +5,23 @@ const FrontPageHero = () => {
 
   function makeMovingSquares(){
     const numberOfSquares = 10;
-    let squaresHtml = [];
+    let squaresJsx = [];
     let i = 0;
-
     while (i < numberOfSquares) {
-      squaresHtml.push(<div className= {"movingSquare_square movingSquare_square-" + i } ></div>);
+      squaresJsx.push(<div key={i} className={"movingSquare_square movingSquare_square-" + i } ></div>);
       i++;
     }
-    return squaresHtml;
+    return squaresJsx;
   }
+  
 
   return (
-    <div>
-      <section class="movingSquares_container">
-        <div class="movingSquares_content"><h2 class="movingSquares_content-title"></h2>
+    <div className="movingSquares_container" >
+        <div className="movingSquares_content">
+        <h2 className="movingSquares_content-title"></h2>
           {/* <img src="" > */}
         </div>
         {makeMovingSquares()}
-      </section>
     </div>
   )
 }

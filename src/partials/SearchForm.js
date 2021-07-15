@@ -11,7 +11,7 @@ const SearchForm = ({ context }) => {
         context.submitSearch();
     }
 
-    function updateTerm (event){       
+    function updateTerm (event){ 
         context.updateTerm(event.target.value);
     }
 

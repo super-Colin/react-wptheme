@@ -10,15 +10,15 @@ const PostMeta = ({index,context}) => {
 
     let catLink = '';
 
-    if(item.categories){         
-        catLink = (<span>
-            Under <Link to={'/category/'+item.categories[0]}>{item.category_name}</Link>
-        </span>);
-    }
+    // if(item.categories){         
+    //     catLink = (<span>
+    //         Under <Link to={'/category/'+item.categories[0]}>{item.category_name}</Link>
+    //     </span>);
+    // }
 
     let theMeta = ''; 
     if(item.type === 'post'){
-        theMeta = (<div className="post-meta">
+        theMeta = (<div className="post-meta"><h3>Meta</h3>
         Published:  <Moment format="MM/DD/YYYY">{item.date}</Moment>, 
         Written by {item.author_name}, {catLink}
         </div>)

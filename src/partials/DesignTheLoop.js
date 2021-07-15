@@ -2,9 +2,9 @@ import React from 'react';
 import WithConsumer from '../context/WithConsumer';
 import DesignThePost from './DesignThePost';
 
-const CodeTheLoop = ({ context }) => {
+const DesignTheLoop = ({ context }) => {
 
-  // console.log('THE LOOP CONTEXT: ', context);
+  console.log('THE LOOP CONTEXT: ', context);
     const posts = () => context.posts;
     const pos = posts();
   
@@ -21,8 +21,7 @@ const CodeTheLoop = ({ context }) => {
           })
       }
     }
-
-    return (results);
+    return ( results);
 
 };
-export default WithConsumer(CodeTheLoop);
+export default WithConsumer(DesignTheLoop);

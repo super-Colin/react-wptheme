@@ -4,7 +4,7 @@ import CodeThePost from './CodeThePost';
 
 const CodeTheLoop = ({ context }) => {
 
-  // console.log('THE LOOP CONTEXT: ', context);
+  console.log('THE LOOP CONTEXT: ', context);
     const posts = () => context.posts;
     const pos = posts();
   

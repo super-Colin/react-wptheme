@@ -2,11 +2,9 @@ import React from 'react';
 import Header from '../partials/Header';
 import CodeTheLoop from '../partials/CodeTheLoop';
 import Footer from '../partials/Footer';
-import {Provider} from '../context/Context'
-// import CommentList from '../partials/CommentList';
-// import CommentForm from '../partials/CommentForm';
+import {Provider} from '../context/Context';
 
-const Single = (props) => {  
+const CodeSingle = (props) => {  
 
   return (
     <Provider router={props} >
@@ -21,4 +19,4 @@ const Single = (props) => {
   )
 
 }
-export default Single
+export default CodeSingle

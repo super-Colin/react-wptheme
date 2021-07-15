@@ -7,7 +7,8 @@ import Home from "./templates/Home";
 import Archive from "./templates/Archive";
 import CodeArchive from "./templates/CodeArchive";
 import DesignArchive from "./templates/DesignArchive";
-import Single from "./templates/Single";
+import CodeSingle from "./templates/CodeSingle";
+import DesignSingle from "./templates/DesignSingle";
 import NotFound from "./templates/NotFound";
 
 
@@ -23,11 +24,10 @@ const routes =(
     <Switch>
       <Route exact path="/" component={Home} />
       <Route path="/archive" component={Archive} />
-      <Route path="/code/:slug" component={Single} />
+      <Route path="/code/:slug" component={CodeSingle} />
       <Route path="/code/" component={CodeArchive} />
-      <Route path="/design/:slug" component={Single} />
+      <Route path="/design/:slug" component={DesignSingle} />
       <Route path="/design/" component={DesignArchive} />
-      <Route path="/:slug" component={Single} />
 
       <Route component={NotFound} />
       

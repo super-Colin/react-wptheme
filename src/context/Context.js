@@ -43,6 +43,7 @@ export class Provider extends React.Component {
 
       setRestType : this.setRestType.bind(this),
       pageUrlToPath : this.pageUrlToPath.bind(this),
+      htmlDecode : this.htmlDecode.bind(this),
     };
 
   }
@@ -89,7 +90,10 @@ export class Provider extends React.Component {
     })
   }
 
-
+  htmlDecode(input) {
+    var doc = new DOMParser().parseFromString(input, "text/html");
+    return doc.documentElement.textContent;
+  }
 
   componentDidMount(){
     let slug = this.props.router.match.params.slug ? this.props.router.match.params.slug : '';
@@ -128,33 +132,29 @@ export class Provider extends React.Component {
     let url = '/wtp/wp-json/wp/v2/'; // DEV ENV ONLY
     switch(this.state.restType){      
       case 'page':
-        console.log('buildUrl SWITCH: page');
+        // console.log('buildUrl SWITCH: page');
         url += 'pages/?slug=';
         url += this.state.slug
       break;
+      case 'design':
       case 'code': 
         console.log('buildUrl SWITCH: category code');
-        url += 'posts?categories=' + this.state.codecatid;
+        // url += 'posts?categories=' + this.state.codecatid;
+        url += 'posts?categories=' + this.state[ this.state.restType + 'catid'];
       break;
-      case 'design': 
-        console.log('buildUrl SWITCH: category design');
-        url += 'posts?categories=' + this.state.designcatid;
-      break;
-      case 'search': 
-        console.log('buildUrl SWITCH: search');
-        url += 'search/?s=';
-        url += this.state.term;
-        url += '&page=' + this.state.currentPage;
-      break;
+      // case 'design': 
+      //   // console.log('buildUrl SWITCH: category design');
+      //   url += 'posts?categories=' + this.state.designcatid;
+      // break;
       case 'post':
       default:
-        console.log('buildUrl SWITCH: default');
+        // console.log('buildUrl SWITCH: default');
         // url += this.state.slug ? 'posts/?slug=' + this.state.slug : 'posts/?page=' + this.state.currentPage;
         url += slug ? 'posts/?slug=' + slug : 'posts/?page=' + this.state.currentPage;
         // url += this.state.restType + 's/' +
         break;
     }
-    console.log('BuilUrl : ', url);
+    // console.log('BuilUrl : ', url);
     return url;
   }
 

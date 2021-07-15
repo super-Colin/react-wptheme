@@ -3,30 +3,22 @@ import { Link } from 'react-router-dom';
 import WithConsumer from '../context/WithConsumer';
 import PostMeta from './PostMeta';
 
-const ThePost = ({index,context}) => {
+const DesignThePost = ({index,context}) => {
 
     const posts = () => context.posts;
     // console.log( 'ThePost posts: ', posts());
     const item = posts()[index];  
     
-    let linkPrefix = item.type === 'page' ? '/page/' : '/post/';
     let theContent = ''; 
-
-    function setRestType(e){
-        let restType = e.target.dataset['posttype'];
-        context.setRestType(restType);
-    }
-    
+    console.log('item is: ', item);
     switch(context.route){
-        case '/': //if homepage,
-        case '/search/:term': //or if search
-        case '/category/:catid': //or if search
+        case '/design': //if homepage,
             theContent = item.excerpt.rendered; //show excerpt only
         break;
         default: //for single, pages - show entire content
             theContent = item.content.rendered;
         break;
-    }   
+    }
 
     return (
         <div id={'post-id-'+item.id} className={'post-item'}>
@@ -39,4 +31,4 @@ const ThePost = ({index,context}) => {
         </div>);
 
 };
-export default WithConsumer(ThePost);
+export default WithConsumer(DesignThePost);

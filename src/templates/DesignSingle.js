@@ -1,19 +1,17 @@
 import React from 'react';
 import Header from '../partials/Header';
-import CodeTheLoop from '../partials/CodeTheLoop';
+import DesignTheLoop from '../partials/DesignTheLoop';
 import Footer from '../partials/Footer';
-import {Provider} from '../context/Context'
-// import CommentList from '../partials/CommentList';
-// import CommentForm from '../partials/CommentForm';
+import {Provider} from '../context/Context';
 
-const Single = (props) => {  
+const DesignSingle = (props) => {  
 
   return (
     <Provider router={props} >
       <div className="Post">
         <Header />
         <div className="content-area">
-        <CodeTheLoop />
+        <DesignTheLoop />
         </div>
         <Footer />
       </div>
@@ -21,4 +19,4 @@ const Single = (props) => {
   )
 
 }
-export default Single
+export default DesignSingle

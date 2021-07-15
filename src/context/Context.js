@@ -32,25 +32,14 @@ export class Provider extends React.Component {
       route : route,
       // currentPagePostType : currentPagePostType,
       posts : [], 
-      comments : [],
       currentPage : 1, 
       totalPages : 0,      
-      commentFields : { 
-        fullName : '', 
-        email : '', 
-        website : '', 
-        comment : ''
-      },
       appError : '',
-      commentErrors : [],
       //global methods      
       nextClicked : this.nextClicked.bind(this), 
       previousClicked : this.previousClicked.bind(this), 
       submitSearch : this.submitSearch.bind(this), 
-      updateTerm : this.updateTerm.bind(this), 
-      submitComment : this.submitComment.bind(this), 
-      updateCommentFields : this.updateCommentFields.bind(this),
-      updateCommentErrors : this.updateCommentErrors.bind(this),
+      updateTerm : this.updateTerm.bind(this),
 
       setRestType : this.setRestType.bind(this),
       pageUrlToPath : this.pageUrlToPath.bind(this),
@@ -110,13 +99,13 @@ export class Provider extends React.Component {
 
   componentDidUpdate(prevProps){ 
     let slug = this.props.router.match.params.slug ? this.props.router.match.params.slug : '';
-    // let catid = this.props.router.match.params.catid ? this.props.router.match.params.catid : '';
+    let catid = this.props.router.match.params.catid ? this.props.router.match.params.catid : '';
     if(prevProps.router.location.pathname !== this.props.router.location.pathname){  
       let curProps = this.props.router.match;       
       this.setState({
         currentPage : 1, 
         slug: slug,
-        // catid: catid,
+        catid: catid,
         restType : this.getRestType(curProps.path),
         catid : curProps.params.catid ? curProps.params.catid : ''
       },
@@ -134,6 +123,7 @@ export class Provider extends React.Component {
   }
 
   buildUrl(slug){
+    console.log('buildUrl SLUG: ', slug, this.state.restType);
     // let url = '/wp-json/wp/v2/'; // PRODUCTION
     let url = '/wtp/wp-json/wp/v2/'; // DEV ENV ONLY
     switch(this.state.restType){      
@@ -142,17 +132,19 @@ export class Provider extends React.Component {
         url += 'pages/?slug=';
         url += this.state.slug
       break;
+      case 'code': 
+        console.log('buildUrl SWITCH: category');
+        url += 'posts?categories=' + this.state.codecatid;
+      break;
+      case 'design': 
+        console.log('buildUrl SWITCH: category');
+        url += 'posts?categories=' + this.state.designcatid;
+      break;
       case 'search': 
         console.log('buildUrl SWITCH: search');
         url += 'search/?s=';
         url += this.state.term;
         url += '&page=' + this.state.currentPage;
-      break;
-      case 'code': 
-        console.log('buildUrl SWITCH: category');
-        url += 'posts?categories=';
-        url += this.state.catid;
-        // url += '&page=' + this.state.currentPage;
       break;
       case 'post':
       default:
@@ -172,16 +164,19 @@ export class Provider extends React.Component {
   getRestType (path){
     let restType = 'post';     
     switch(path){
-      case '/page/:slug' || '/code/:slug' || '/design/:slug' :
+      case '/page/:slug' :
         restType = 'page';
         break;
       case '/search/:term':
         restType = 'search';
         break;
-      case '/code/' || '/design/':
-        restType = 'category';
+      case '/code/':
+        restType = 'code';
         break;
-      case '/post/:slug':
+      case '/design/':
+        restType = 'design';
+        break;
+      case '/post/:slug' || '/code/:slug' || '/design/:slug':
       default:
         restType = 'post';
         break;
@@ -197,16 +192,9 @@ export class Provider extends React.Component {
       self.setState({
         posts : response.data, 
         totalPages : response.headers['x-wp-totalpages']
-      },
-      // function(){          
-      //   //get comments if post, and post array is not empty       
-      //   if(self.state.route === '/:slug' 
-      //     && self.state.posts[0]){           
-      //     self.getComments(self.state.posts[0].id);
-      //   }  
-      // }
-      )
+      });
       console.log('~~~~~~~~~~~~~~~~~~~~~~~~~');
+
     }).catch(function(error){
       console.log(error);
       self.appError = 'An unexpected error occurred';
@@ -220,11 +208,6 @@ export class Provider extends React.Component {
     })
   }
 
-  updateCommentErrors (errors){
-    this.setState({
-      commentErrors : errors
-    })
-  }
 
   submitSearch(){      
     this.setState({
@@ -235,56 +218,8 @@ export class Provider extends React.Component {
     this.props.router.history.push('/search/'+this.state.term);
   }
 
-  updateCommentFields (key,val){
-    //TO UPDATE NESTED STATE:
-    //https://stackoverflow.com/questions/43040721/how-to-update-nested-state-properties-in-react
-    var commentFields = {...this.state.commentFields}
-    commentFields[key] = val;
-    this.setState({commentFields})   
-  }
 
-  submitComment(){
-    // console.log(this.state);
-    let postdata = {
-      'post' : this.state.posts[0].id,
-      'author_name' : this.state.commentFields.fullName, 
-      'author_email' : this.state.commentFields.email,
-      'author_url' : this.state.commentFields.website, 
-      'content' : this.state.commentFields.comment
-    }
 
-    let self = this;
-
-    Axios.post('/wp-json/wp/v2/comments',postdata).then((response)=>{     
-
-      let cmnt = response.data; 
-      cmnt.waiting = 'Your comment is waiting approval';
-      let cmnts = self.state.comments;
-      cmnts.push(cmnt);
-      self.setState({
-        comments : cmnts 
-      })      
-    }).catch(function(error){  
-      let err = [];
-      err.push(error.message);
-      self.setState({
-        commentErrors : err
-      })
-    }); 
-
-  }
-
-  // getComments(id){
-  //   let url = '/wp-json/wp/v2/comments?post=' + id;
-  //   let self = this;
-  //   Axios.get(url).then((response)=>{       
-  //     self.setState({
-  //       comments : response.data 
-  //     })      
-  //   }).catch(function(error){
-  //     console.log(error);
-  //   }); 
-  // }
 
   nextClicked (){ 
     let newPage = this.state.currentPage + 1;    

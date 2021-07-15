@@ -85,6 +85,34 @@ export class Provider extends React.Component {
     } 
   }
 
+  buildUrl(){
+    let url = '/wp-json/wp/v2/';    
+    switch(this.state.restType){      
+      case 'page': 
+        url += 'pages/?slug=';
+        url += this.state.slug
+      break;
+      case 'search': 
+        url += 'search/?s=';
+        url += this.state.term;
+        url += '&page=' + this.state.currentPage;
+      break;
+      case 'category': 
+        url += 'posts?categories=';
+        url += this.state.catid;
+        url += '&page=' + this.state.currentPage;
+      break;      
+      case 'post': 
+      default:      
+        // url += this.state.slug ? 'posts/?slug=' + this.state.slug : 'posts/?page=' + this.state.currentPage;
+        url += this.state.slug ? 'posts/?slug=' + this.state.slug : 'posts/?page=' + this.state.currentPage;
+        break;      
+    }
+
+    console.log('buildUrl returning: ', url);
+    return url;
+  }
+
   updateTerm (term){
     this.setState({
       term : term
@@ -143,34 +171,6 @@ export class Provider extends React.Component {
       })
     }); 
 
-  }
-
-  buildUrl(){
-    let url = '/wp-json/wp/v2/';    
-    switch(this.state.restType){      
-      case 'page': 
-        url += 'pages/?slug=';
-        url += this.state.slug
-      break;
-      case 'search': 
-        url += 'search/?s=';
-        url += this.state.term;
-        url += '&page=' + this.state.currentPage;
-      break;
-      case 'category': 
-        url += 'posts?categories=';
-        url += this.state.catid;
-        url += '&page=' + this.state.currentPage;
-      break;      
-      case 'post': 
-      default:      
-        // url += this.state.slug ? 'posts/?slug=' + this.state.slug : 'posts/?page=' + this.state.currentPage;
-        url += this.state.slug ? 'posts/?slug=' + this.state.slug : 'posts/?page=' + this.state.currentPage;
-        break;      
-    }
-
-    console.log('buildUrl returning: ', url);
-    return url;
   }
 
   getComments(id){

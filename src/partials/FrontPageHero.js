@@ -20,6 +20,7 @@ const FrontPageHero = () => {
         <div className="movingSquares_content">
         <h2 className="movingSquares_content-title"></h2>
           {/* <img src="" > */}
+          <img src={window.PHP_VARS['custom_logo_src']} alt="logo" />
         </div>
         {makeMovingSquares()}
     </div>

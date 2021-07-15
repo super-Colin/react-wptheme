@@ -24,7 +24,7 @@ const Header = ({context}) => {
   // }
 
   // Get Wordpress PHP Menus object from gloabal variable inserted by sc_importMenusToJs() in functions.php
-  const PHP_VARS = window.PHP_VARS;
+  // const PHP_VARS = window.PHP_VARS;
 
   // update rest state for appropiate api calls for content
   function setRestType(e){
@@ -39,13 +39,13 @@ const Header = ({context}) => {
     <header id="masthead" className="site-header headerBump_container">
 
       <div className="headerBump_sideMenu headerBump_leftMenu">
-        <Link to="/design" onClick={setRestType} data-posttype='design' >Design</Link>
+        <Link to="/design" >Design</Link>
         
       </div>
       
       <div className="headerBump_bump">
           <Link className="headerBump_bump-link" to="/">
-            <img src={PHP_VARS['custom_logo_src']} alt="logo" />
+            <img src={window.PHP_VARS['custom_logo_src']} alt="logo" />
           </Link>
       </div>
 

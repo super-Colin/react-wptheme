@@ -6,7 +6,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Home from "./templates/Home";
 import Archive from "./templates/Archive";
 import CodeArchive from "./templates/CodeArchive";
-// import DesignArchive from "./templates/DeisgnArchive";
+import DesignArchive from "./templates/DesignArchive";
 import Single from "./templates/Single";
 import NotFound from "./templates/NotFound";
 
@@ -25,7 +25,8 @@ const routes =(
       <Route path="/archive" component={Archive} />
       <Route path="/code/:slug" component={Single} />
       <Route path="/code/" component={CodeArchive} />
-      {/* <Route exact path="/design/:slug" component={DesignArchive} /> */}
+      <Route path="/design/:slug" component={Single} />
+      <Route path="/design/" component={DesignArchive} />
       <Route path="/:slug" component={Single} />
 
       <Route component={NotFound} />

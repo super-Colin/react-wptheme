@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from '../partials/Header';
-import TheLoop from '../partials/TheLoop';
+import DesignTheLoop from '../partials/DesignTheLoop';
 import Pager from '../partials/Pager';
 import Footer from '../partials/Footer';
 import {Provider} from '../context/Context';
@@ -8,9 +8,9 @@ import {Provider} from '../context/Context';
 const DesignArchive = (props) => {
   
   return (
-    <Provider>
+    <Provider router={props} >
       <Header />
-      <TheLoop />
+      <DesignTheLoop />
       <Footer />
     </Provider>
   )

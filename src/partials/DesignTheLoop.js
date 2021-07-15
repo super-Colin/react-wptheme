@@ -1,6 +1,6 @@
 import React from 'react'; 
 import WithConsumer from '../context/WithConsumer';
-import CodeThePost from './CodeThePost';
+import DesignThePost from './DesignThePost';
 
 const CodeTheLoop = ({ context }) => {
 
@@ -17,7 +17,7 @@ const CodeTheLoop = ({ context }) => {
         results = <div className="no-results">no results</div>;
       }else{
         results = pos.map(function(item,i){
-            return <CodeThePost key={i} index={i}></CodeThePost>
+            return <DesignThePost key={i} index={i}></DesignThePost>
           })
       }
     }

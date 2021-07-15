@@ -123,7 +123,7 @@ export class Provider extends React.Component {
   }
 
   buildUrl(slug){
-    console.log('buildUrl SLUG: ', slug, this.state.restType);
+    console.log('buildUrl slug, restType: ', slug, this.state.restType);
     // let url = '/wp-json/wp/v2/'; // PRODUCTION
     let url = '/wtp/wp-json/wp/v2/'; // DEV ENV ONLY
     switch(this.state.restType){      
@@ -133,11 +133,11 @@ export class Provider extends React.Component {
         url += this.state.slug
       break;
       case 'code': 
-        console.log('buildUrl SWITCH: category');
+        console.log('buildUrl SWITCH: category code');
         url += 'posts?categories=' + this.state.codecatid;
       break;
       case 'design': 
-        console.log('buildUrl SWITCH: category');
+        console.log('buildUrl SWITCH: category design');
         url += 'posts?categories=' + this.state.designcatid;
       break;
       case 'search': 

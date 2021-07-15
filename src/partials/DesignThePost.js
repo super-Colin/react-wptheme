@@ -32,7 +32,7 @@ const ThePost = ({index,context}) => {
         <div id={'post-id-'+item.id} className={'post-item'}>
             <h1>
                 {/* <Link to={linkPrefix+item.slug} onClick={setRestType} data-posttype={item.type} >{item.title.rendered}</Link> */}
-                <Link to={ '/code' +context.pageUrlToPath(item.link)} >{item.title.rendered}</Link>
+                <Link to={ '/design' +context.pageUrlToPath(item.link)} >{item.title.rendered}</Link>
             </h1>
             <PostMeta index={index}></PostMeta>
             <div className="post-content" dangerouslySetInnerHTML={{__html:theContent}}></div>

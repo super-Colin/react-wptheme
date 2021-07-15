@@ -1,6 +1,6 @@
 import React from "react";
 import Axios from "axios";
-
+import { useLocation } from 'react-router-dom';
 //context api:  
 //https://medium.com/datadriveninvestor/getting-started-w-reacts-context-api-f60aa9be758f
 
@@ -47,9 +47,28 @@ export class Provider extends React.Component {
       updateCommentErrors : this.updateCommentErrors.bind(this),
 
       setRestType : this.setRestType.bind(this),
+      pageUrlToPath : this.pageUrlToPath.bind(this),
 
     };
 
+  }
+
+
+  pageUrlToPath = (pageURL) => {
+    // let domainRelativePath = pageURL.split(domainPrefix)[1];
+    let domainRelativePath = pageURL.split( this.getDomainPrefix() )[1];
+    return domainRelativePath;
+  }
+  getDomainPrefix = ()=>{
+    const { pathname } = useLocation();
+    let  domainPrefix = "";
+    if(pathname == "/"){
+      domainPrefix =  window.location.href.split('://')[1]; // ["http", "website.com/"]
+    }else{
+      let domainPrefixMinusHttp = window.location.href.split('://')[1]; // ["http", "website.com/some"]
+      domainPrefix = domainPrefixMinusHttp.split(pathname)[0]; // ["website.com"]
+    }
+    return domainPrefix;
   }
 
   
@@ -113,14 +132,14 @@ export class Provider extends React.Component {
         url += 'posts?categories=';
         url += this.state.catid;
         url += '&page=' + this.state.currentPage;
-      break;      
-      case 'post': 
-      default:      
+      break;
+      case 'post':
+      default:
         console.log('buildUrl SWITCH: default');
         // url += this.state.slug ? 'posts/?slug=' + this.state.slug : 'posts/?page=' + this.state.currentPage;
         url += slug ? 'posts/?slug=' + slug : 'posts/?page=' + this.state.currentPage;
         // url += this.state.restType + 's/' +
-        break;      
+        break;
     }
     return url;
   }

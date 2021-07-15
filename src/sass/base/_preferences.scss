@@ -17,6 +17,13 @@ h1,h2,h3,h4,h5,h6{ font-family: $type_heading-font-family-main; }
 #wpadminbar{display: none;}
 html{margin-top: 0 !important;}
 
+a{
+    color: $theme_color-link-main;
+}
+a:visited{
+    color: $theme_color-link-visited;
+}
+
 
 // Set a responsive root font size for a more fluid rem unit
 :root,

@@ -1,11 +1,11 @@
 
-$flatHeader_bg:  $color_white;
+$flatHeader_bg:  sget('color.white');
 $flatHeader_height:  4.2rem;
-$flatHeader_padding-x: $spacing_gutter-page;
-$flatHeader_padding-y: $spacing_small;
+$flatHeader_padding-x: sget('spacing.gutter');
+$flatHeader_padding-y: sget('spacing.small');
 
 // Create a breakpoint for the header to transition away from a mobile dropdown menu
-$flatHeader_expanded-breakpoint : $breakpoint_for-tabletlandscape;
+$flatHeader_expanded-breakpoint : sget('breakpoint.for-tabletLandscape');
 $breakpoints: new-breakpoint('for-flatHeader-expanded', $flatHeader_expanded-breakpoint);
 
 .flatHeader_container{
@@ -17,7 +17,7 @@ $breakpoints: new-breakpoint('for-flatHeader-expanded', $flatHeader_expanded-bre
 
     display: flex;
     justify-content: center;
-    box-shadow: 0 4px 4px $color_gray-500;
+    box-shadow: 0 4px 4px sget('color.gray-500');
     @include breakpoint('for-flatHeader-expanded'){
         min-height: $flatHeader_height;
         height: unset;
@@ -72,17 +72,17 @@ $breakpoints: new-breakpoint('for-flatHeader-expanded', $flatHeader_expanded-bre
     position: absolute;
     top: 100%;
     left: 0;
-    z-index: $zindex_ui-nav;
+    z-index: sget('zindex.ui.nav');
 
     display: flex;
     flex-direction: column;
     justify-content: space-around;
 
-    background-color: $color_main;
+    background-color: sget('color.theme.main');
     overflow: hidden;
     transition: 
-        max-height $timing_transitionduration-small,
-        padding $timing_transitionduration-small;
+        max-height sget('timing.transition.duration.small'),
+        padding sget('timing.transition.duration.small');
 
     @include breakpoint('for-flatHeader-expanded') {
         background-color: unset;
@@ -95,27 +95,27 @@ $breakpoints: new-breakpoint('for-flatHeader-expanded', $flatHeader_expanded-bre
         align-items: center;
     }
 }
-.flatHeader_nav-active _flatHeader_nav-links {
-    padding: $spacing_small $spacing_medium;
+.flatHeader_nav-active .flatHeader_nav-links {
+    padding: sget('spacing.small') sget('spacing.medium');
     max-height: calc(100vh - #{$flatHeader_height});
 }
 .flatHeader_nav-links a{
-    color: $color_white;
-    font-size: $type_heading-font-size-large;
+    color: sget('color.white');
+    font-size: sget('heading.font.size.large');
     text-decoration: none;
     text-align: center;
 
     @include breakpoint('for-flatHeader-expanded') {
-        font-size: $type_heading-font-size-medium;
-        color: $color_black;
+        font-size: sget('heading.font.size.medium');
+        color: sget('color.black');
     }
 }
 .flatHeader_nav-links a.flatHeader_donate-link {
     @include breakpoint('for-flatHeader-expanded') {
-        padding: $button_padding-main;
-        background-color: $color_main;
+        padding: sget('button.padding.main');
+        background-color: sget('color.theme.main');
         
-        border-radius: $button_radius-main;
+        border-radius: sget('button.radius.main');
         color: $flatHeader_bg;
     }
 }
@@ -124,7 +124,7 @@ $breakpoints: new-breakpoint('for-flatHeader-expanded', $flatHeader_expanded-bre
     // height: 100%;
     width: ($flatHeader_height - $flatHeader_padding-y * 2);
     // padding: $global_spacing-xsmall;
-    padding: 0_1rem;
+    padding: 0.1rem;
     position: absolute;
     top: $flatHeader_padding-y;
     right: $flatHeader_padding-x;

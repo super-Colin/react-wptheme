@@ -1,0 +1,50 @@
+// Classes
+
+.fullBlock-margin,
+.blockGutters-margin{
+    margin-left: $global_spacing-gutters-page;
+    margin-right: $global_spacing-gutters-page;
+}
+.fullBlock-margin,
+.blockMargin-margin{
+    margin-top: $global_spacing-blockMargin;
+    margin-bottom: $global_spacing-blockMargin;
+}
+.fullBlock-padding,
+.blockGutters-padding {
+    padding-left: $global_spacing-gutters-page;
+    padding-right: $global_spacing-gutters-page;
+}
+.fullBlock-padding,
+.blockMargin-padding {
+    padding-top: $global_spacing-blockMargin;
+    padding-bottom: $global_spacing-blockMargin;
+}
+
+.bgBrand{background-color: sget('color.theme.main');}
+.colorBrand{color: sget('color.theme.main');}
+.colorWhite{color: sget('color.white');}
+// .hexagon{
+//     @include hexagonClipPath1;
+// }
+.title{
+    font-family: $brand_fontfamily-title-main;
+}
+.link{
+    cursor: pointer;
+    color: var(--brand_color-link1);
+    text-decoration: underline;
+}
+.clearfix::after{
+    content:'';
+    clear: both;
+    display: table;
+}
+
+
+.full-img{
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}

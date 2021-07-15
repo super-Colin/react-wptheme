@@ -1,0 +1,156 @@
+
+$numberOfSquares:10; // change in JS as well!
+
+// <section class="movingSquares_container">
+//   <div class="movingSquares_content"><h2 class="movingSquares_content-title"></h2>
+//   <br />
+//   <img src="" > <-- for a logo in the middle etc. -->
+//   </div>
+//   <script>function makeMovingSquares() {
+//     const $numberOfSquares=10; <-- AM I THE SAME AS IN SASS??? -->
+//     const parentElem=document.querySelector('.movingSquares_container');
+//     let i=0;
+//     while (i < $numberOfSquares) {
+//       parentElem.innerHTML+='<div class="movingSquare_square movingSquare$i++;} }makeMovingSquares();
+//   </script>
+// </section>
+
+
+
+.movingSquares_container {
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  background-color: #000;
+  background-image: linear-gradient(to bottom, #000 0, #220d20 20%, #220d20 80%, #000 100%)
+}
+
+.movingSquares_content {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 15%;
+  right: 15%;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center
+}
+
+.movingSquares_content * {
+  max-width: 100%
+}
+
+.movingSquares_content-title::before {
+  display: block;
+  opacity: .5;
+  color: #000;
+  color: #220d20;
+  content: "";
+  animation-name: changeContent;
+  animation-duration: 24s;
+  animation-iteration-count: infinite
+}
+
+.movingSquare_square {
+  width: 15%;
+  height: 60%;
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  animation-name: moveSide;
+  animation-duration: 6s;
+  animation-timing-function: ease-in-out;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+  border-top: 4px solid rgba(255, 255, 255, .05);
+  border-bottom: 4px solid rgba(255, 255, 255, .25);
+  background-image: linear-gradient(to right, rgba(240, 150, 22, .75), rgba(110, 5, 150, .5), rgba(240, 150, 22, .75));
+  background-size: 400% 400%
+}
+
+@for $i from 1 through $numberOfSquares {
+  .movingSquare_square-#{$i}{
+    top: calc(calc(calc(100 / #{$numberOfSquares} ) * #{$i}) * 1%);
+    // top: (((100 / #{$numberOfSquares} ) * #{$i}) * 1%);
+    animation-delay: $i * (-0.15s);
+  }
+}
+
+@keyframes changeContent {
+  0% {
+    content: "Super Colin"
+  }
+
+  22% {
+    content: "Super Colin"
+  }
+
+  47% {
+    content: "Determination"
+  }
+
+  72% {
+    content: "Creativity"
+  }
+
+  97% {
+    content: "Ingenuity"
+  }
+
+  100% {
+    content: "Ingenuity"
+  }
+}
+
+@keyframes moveSide {
+  0% {
+    left: 0;
+    width: 15%;
+    background-position: -15% 0;
+    border-radius: 0;
+    opacity: 30%
+  }
+
+  10% {
+    background-position: 0 0
+  }
+
+  25% {
+    left: 15%;
+    width: 15%;
+    background-position: 25% 0;
+    border-radius: 0 20px 0 0
+  }
+
+  50% {
+    left: 15%;
+    width: 70%;
+    background-position: 50% 0;
+    border-radius: 0;
+    opacity: 100%
+  }
+
+  75% {
+    left: 70%;
+    width: 15%;
+    background-position: 75% 0;
+    border-radius: 20px 0 0 0
+  }
+
+  90% {
+    background-position: 100% 0
+  }
+
+  100% {
+    left: 85%;
+    width: 15%;
+    background-position: 115% 0;
+    border-radius: 0;
+    opacity: 30%
+  }
+}

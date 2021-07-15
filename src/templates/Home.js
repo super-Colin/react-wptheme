@@ -1,14 +1,19 @@
 import React from 'react'
+import { Provider } from '../context/Context';
+
+import FrontPageHero from '../partials/FrontPageHero';
 import Header from "../partials/Header";
 import Footer from "../partials/Footer";
 
-const Home = () => {
+const Home = (props) => {
   return (
-    <div>
+    <Provider router={props} >
+      <FrontPageHero />
       <Header />
-      <h1>Home</h1>
+      <h1>Home Page component</h1>
+      
       <Footer />
-    </div>
+    </Provider>
   )
 }
 

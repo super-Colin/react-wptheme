@@ -1,0 +1,98 @@
+
+.teamListing_container{
+    
+}
+
+.teamListing_member{
+    margin:  var(--global_spacing-medium) 0;
+    padding: var(--global_spacing-medium) var(--global_spacing-gutters);
+}
+.teamListing_member-text{
+    
+}
+.teamListing_member-text-name {
+    margin: var(--global_spacing-medium) 0 var(--global_spacing-small);
+    font-size: var(--global_fontsize-title-medium);
+}
+.teamListing_member-text-position {
+    display: block;
+    margin: var(--global_spacing-small) 0 var(--global_spacing-large);
+    color: var(--global_color-gray1);
+}
+.teamListing_member-text p{
+    font-size: var(--global_fontsize-body-medium);
+    margin-top: var(--global_spacing-owl);
+}
+.teamListing_member-image,
+.teamListing_member-image img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+}
+.teamListing_member-image{
+    display: flex;
+    justify-content: center;
+    max-height: 50vh;
+    margin-top: var(--global_spacing-medium);
+    position: relative;
+}
+.teamListing_member-image-wrapper {
+    display: inline-block;
+    position: relative;
+    // max-height: 50vh;
+    // max-height: 100%;
+
+    height: 100%;
+}
+.teamListing_member-image-wrapper img{
+    display: block;
+    // max-height: 100%;
+    object-fit: cover;
+
+    height: 100%;
+    width: auto;
+}
+.teamListing_member-image-caption{
+    padding: var(--global_spacing-small);
+    background-color: rgba(0,0,0,0.6);
+    color: var(--global_color-white1);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+.teamListing_member-image-caption span{
+    display: block;
+    text-align: center;
+    width: 100%;
+}
+
+
+@media(min-width: $breakpoint_for-tablet) {
+    .teamListing_member {
+        display: flex;
+    }
+
+    .teamListing_member-text {
+        width: 60%;
+        margin-left: var(--global_spacing-xlarge);
+    }
+    .teamListing_member-text-name{
+        margin-top: 0;
+        font-size: var(--global_fontsize-title-large);
+    }
+
+    .teamListing_member-image{
+        width: 40%;
+        margin-top: 0;
+    }
+}
+
+@media(min-width: $breakpoint_for-tabletlandscape) {
+
+}
+@media(min-width: $breakpoint_for-desktop) {
+    .teamListing_member-image {
+        height: 40vh;
+    }
+}

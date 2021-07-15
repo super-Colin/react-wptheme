@@ -1,0 +1,37 @@
+
+$arrow_bg_color: $theme_color-icon-black;
+$arrow_height: 20px;
+$arrow_wing-height: 12px;
+
+.scArrow {
+  position: relative;
+  height: $arrow_height;
+}
+
+.scArrow,
+.scArrow::after,
+.scArrow::before {
+  // width: 4px;
+  width: calc( #{$arrow_wing-height} / 3);
+  background-color: $arrow_bg_color;
+  // border-radius: 2px
+  border-radius: calc(#{$arrow_wing-height} / 6);
+}
+.scArrow::after,
+.scArrow::before {
+  display: block;
+  content: "";
+  // height: 12px;
+  height: $arrow_wing-height;
+  position: absolute;
+  top: 1px;
+  left: 0;
+  right: 0;
+  transform-origin: center top;
+  transform: rotate(-45deg);
+  background-color: $arrow_bg_color;
+}
+.scArrow::after {
+  transform: rotate(45deg)
+}
+

@@ -1,0 +1,94 @@
+
+$spacing_xxxsmall: 0.25rem;
+$spacing_xxsmall: 0.45rem;
+$spacing_xsmall: 0.6rem;
+$spacing_small: 0.8rem;
+$spacing_medium: 1.2rem;
+$spacing_large: 1.8rem;
+$spacing_xlarge: 2.4rem;
+$spacing_xxlarge: 3.1rem;
+$spacing_xxxlarge: 3.8rem;
+$spacing_gutter: $theme_spacing-gutter;
+
+$block_margin-y: $spacing_xxlarge;
+$block_margin-x: $theme_spacing-gutter;
+$block_padding-y: $spacing_medium;
+$block_padding-x: $spacing_medium;
+
+$global_deep-map: deep-map-merge(
+    (
+        'spacing': (
+            'owl': 1.3em,
+            'xxsmall': $spacing_xxsmall,
+            'xsmall': $spacing_xsmall,
+            'small': $spacing_small,
+            'medium': $spacing_medium,
+            'large': $spacing_large,
+            'xlarge': $spacing_xlarge,
+            'xxlarge': $spacing_xxlarge,
+            'xxxlarge': $spacing_xxxlarge,
+            'gutter': $spacing-gutter,
+            'block':(
+                'margin':(
+                    'y':(
+                        // 'main':$spacing_xxlarge,
+                        'small':$spacing_large,
+                        'medium':$spacing_xxlarge,
+                        'large':$spacing_xxxlarge,
+                    ),
+                    'x':(
+                        // 'main':$spacing-gutter,
+                        'gutter':$spacing-gutter,
+                        'small':$spacing_medium,
+                        'medium':$spacing_large,
+                        'large':$spacing_xlarge,
+                    )
+                ),
+                'padding':(
+                    'y':(
+                        // 'main':$spacing_medium,
+                        'small':$spacing_medium,
+                        'medium':$spacing_large,
+                        'large':$spacing_xlarge,
+                    ),
+                    'x':(
+                        // 'main':$spacing_medium,
+                        'gutter':$spacing-medium,
+                        'small':$spacing_medium,
+                        'medium':$spacing_large,
+                        'large':$spacing_xlarge,
+                    )
+                )
+            )
+        )
+    ),
+    $global_deep-map,
+    true
+);
+
+
+
+
+//  /* ==-- Spacing --== */
+// $global_spacing-xxsmall: .25rem;
+// $global_spacing-xsmall: .45rem;
+// /* smaller spacing is best for a small, subtle nudge on something */
+// $global_spacing-small: .7rem;
+// /* small spacing is for good for spacing under a small h tag (h3-ish) */
+// $global_spacing-medium: 1.2rem;
+// /* medium spacing is your go to for most padding and margins */
+// $global_spacing-large: 2rem;
+// /* large spacing are more for vertical spacing(margin) from block to block or large titles */
+// $global_spacing-xlarge: 2.6rem;
+// /* xlarger spacing are more for vertical spacing(margin) from section to section */
+// $global_spacing-xxlarge: 3.2rem;
+// $global_spacing-xxxlarge: 3.6rem;
+// /* largest spacing is more for vertical spacing(margin) where you want a lot of white space */
+
+// $global_spacing-blockMargin: 3.5rem;
+
+// $global_spacing-gutters-grid: 1vw;
+// $global_spacing-gutters-page: 2vw;
+// /* padding for the side of the page */
+
+// $global_spacing-owl: 1.3em;

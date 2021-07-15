@@ -10,8 +10,12 @@ const ThePost = ({index,context}) => {
     const item = posts()[index];  
     
     let linkPrefix = item.type === 'page' ? '/page/' : '/post/';
-    
     let theContent = ''; 
+
+    function setRestType(e){
+        let restType = e.target.dataset['posttype'];
+        context.setRestType(restType);
+    }
     
     switch(context.route){
         case '/': //if homepage,
@@ -26,7 +30,10 @@ const ThePost = ({index,context}) => {
 
     return (
         <div id={'post-id-'+item.id} className={'post-item'}>
-            <h1><Link to={linkPrefix+item.slug}>{item.title.rendered}</Link></h1>
+            <h1>
+                {/* <Link to={linkPrefix+item.slug} onClick={setRestType} data-posttype={item.type} >{item.title.rendered}</Link> */}
+                <Link to={context.pageUrlToPath(item.link)} onClick={setRestType} data-posttype={item.type} >{item.title.rendered}</Link>
+            </h1>
             <PostMeta index={index}></PostMeta>
             <div className="post-content" dangerouslySetInnerHTML={{__html:theContent}}></div>
         </div>);

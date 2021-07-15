@@ -31,14 +31,11 @@
 	<a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e( 'Skip to content', 'honeycomb' ); ?></a>
 
     <header id="masthead" class="site-header headerBump_container">
-        <!-- <a class="title" href="<?php // echo get_site_url() ?>">Coming</a> -->
-        <!-- <a href="#">Coming</a> -->
-        <a href="#" style="text-decoration: none;"></a>
+        <a href="#">Coming</a>
         <div class="headerBump_bump">
             <a class="headerBump_bump-link" href="#">
                 <img class="headerBump_bump-link-logo" src="<?php echo get_template_directory_uri() ?>/imgs/sc-diamond.png" alt="">
             </a>
         </div>
-        <!-- <a href="#">Soon</a> -->
-        <a href="#" style="text-decoration: none;"></a>
+        <a href="#">Soon</a>
 	</header><!-- #masthead -->

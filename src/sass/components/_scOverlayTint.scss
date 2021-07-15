@@ -1,0 +1,58 @@
+/* 
+<div class="overlayTint_container">
+    <img class="overlayTint_bgImage" src="https://www.supercolin.dev/wp-content/themes/SuperColinv2/imgs/code-wide.png" alt="" data-pagespeed-url-hash="1797682089" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+    <div class="overlayTint overlayTint_dark"></div>
+    <div class="overlayTint_dark-content">
+        <p>I like making things and understanding the simple principles that complex systems are built on. I started as a carpenter, making things with my hands. Later I became an electrician where I had to understand and build systems in my head before I could go to work with my hands.</p> 
+        <p>Then one day I found coding and had a new passion, my life changed that day. I’ve since been teaching myself mostly web development and learning something new almost everyday! Coding is basically magic and who wouldn’t want to be a wizard??</p>
+    </div>
+</div> 
+*/
+
+
+.overlayTint_container {
+  position: relative
+}
+
+.overlayTint,
+.overlayTint_bgImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+// img.overlayTint_bgImage {
+img.overlayTint_bgImage {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  z-index: $zindex_imageoverlay-image;
+}
+
+.overlayTint {
+  z-index: $zindex_imageoverlay-tint;
+}
+
+.overlayTint_dark {
+  background-color: rgba(0, 0, 0, .66)
+}
+.overlayTint_dark-content {
+  color: $color_white;
+}
+
+.overlayTint_light {
+  background-color: rgba(255, 255, 255, .5)
+}
+.overlayTint_light-content {
+  color: $color_black;
+
+}
+
+.overlayTint_dark-content,
+.overlayTint_light-content {
+  position: relative;
+  z-index: $zindex_imageoverlay-content;
+  @include block_padding-full;
+}

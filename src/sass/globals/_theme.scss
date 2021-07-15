@@ -13,9 +13,14 @@ $theme_color-accent: #1A7E13;
 $theme_color-accent-light: #1A7E13;
 $theme_color-accent-dark: #1A7E13;
 
-$theme_color-link-main: '';
-$theme_color-link-visited: '';
+$theme_color-link-main: $theme_color-main-light;
+$theme_color-link-visited: $theme_color-main-dark;
 
+$theme_color-icon-main: $theme_color-main;
+$theme_color-icon-white: #FFF;
+$theme_color-icon-light: $theme_color-main;
+$theme_color-icon-dark: $theme_color-main;
+$theme_color-icon-black: #000;
 
 // TYPE
 $theme_link-font-family-main: '';

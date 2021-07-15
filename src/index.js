@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import './index.css';
 
 
 import Home from "./templates/Home";
@@ -12,10 +11,15 @@ import NotFound from "./templates/NotFound";
 
 const routes =(
   <BrowserRouter basename="/wtp" >
+  
   {/* basname is only for local dev XAMPP environment REMOVE before building for prod DEV ENV */}
+  {/* for example, my local WP home page frontend is at    http://localhost/wtp/    */}
   {/* https://reactrouter.com/web/api/BrowserRouter/basename-string */}
+  <style>{"#wpadminbar{display: none;} html{margin-top: 0 !important;}"}</style> 
+  {/* FOR DEV ENV, hide the wp admin bar on front end */}
     <Switch>
-      <Route exact path="/" component={Archive} />
+      {/* <Route exact path="/" component={Archive} /> */}
+      <Route exact path="/" component={Home} />
       <Route exact path="/archive" component={Archive} />
       <Route path="/:slug" component={Single} />
 

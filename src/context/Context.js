@@ -12,6 +12,7 @@ export class Provider extends React.Component {
     super(props); 
 
     // let restType = 'code';
+    // let domainPrefix = this.getDomainPrefix();
     let restType = this.getRestType(props.router.match.path);
     let codeCatId = this.getCategoryIdFromName('code');
     let designCatId = this.getCategoryIdFromName('design');
@@ -22,7 +23,8 @@ export class Provider extends React.Component {
     // let currentPagePostType = ;
 
     this.state = {
-      PHP_VARS : window.PHP_VARS,
+      PHP_VARS : window.PHP_VARS, //PHP VARS are set in the functions.php file in public
+      // domainPrefix : domainPrefix,
       term : term,
       slug : slug,
       restType : restType,

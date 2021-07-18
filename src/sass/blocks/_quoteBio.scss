@@ -1,0 +1,25 @@
+.quoteBio_container {
+  position: relative;
+  margin-top: 3.1rem;
+  margin-bottom: 3.1rem;
+  overflow: hidden;
+  @include block_margin_y;
+}
+
+.quoteBio_quote {
+  text-align: center;
+  margin: 3.8rem 0;
+  font-family: "Roboto Slab", serif
+}
+
+.quoteBio_imgBg img {
+  display: block
+}
+
+.quoteBio_imgBg-content {
+  font-family: "Roboto Mono", monospace
+}
+
+.quoteBio_imgBg-content p+p {
+  margin-top: 1.3em
+}

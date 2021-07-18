@@ -24,7 +24,8 @@ function sc_importMenusToJs(){
         'header_menu_right_items' => wp_get_nav_menu_items( $menuLocations['header-menu-right'] ),
         'footer_menu_items' => wp_get_nav_menu_items( $menuLocations['footer-menu'] ),
         'custom_logo_src' => sc_get_custom_logo_src(),
-        'categories' => get_categories()
+        'categories' => get_categories(),
+        'template_directory' => get_template_directory_uri()
     ) ), 'before' );
 }
 

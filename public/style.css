@@ -1182,6 +1182,53 @@ html {
   z-index: 10;
 }
 
+.quoteBio_container {
+  position: relative;
+  margin-top: 3.1rem;
+  margin-bottom: 3.1rem;
+  overflow: hidden;
+  margin-top: 1.8rem;
+  margin-bottom: 1.8rem;
+}
+@media (min-width: 600px) {
+  .quoteBio_container {
+    margin-top: 3.1rem;
+  }
+}
+@media (min-width: 1180px) {
+  .quoteBio_container {
+    margin-top: 3.8rem;
+  }
+}
+@media (min-width: 600px) {
+  .quoteBio_container {
+    margin-bottom: 3.1rem;
+  }
+}
+@media (min-width: 1180px) {
+  .quoteBio_container {
+    margin-bottom: 3.8rem;
+  }
+}
+
+.quoteBio_quote {
+  text-align: center;
+  margin: 3.8rem 0;
+  font-family: "Roboto Slab", serif;
+}
+
+.quoteBio_imgBg img {
+  display: block;
+}
+
+.quoteBio_imgBg-content {
+  font-family: "Roboto Mono", monospace;
+}
+
+.quoteBio_imgBg-content p + p {
+  margin-top: 1.3em;
+}
+
 .movingSquares_container {
   height: 100vh;
   width: 100%;

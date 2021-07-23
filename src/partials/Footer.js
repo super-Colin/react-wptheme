@@ -20,12 +20,18 @@ const Footer = () => {
                 <div className="envelopeFooter-middle-bgLeft"></div>
                 <div className="envelopeFooter-middle-bgRight-back"></div>
                 <div className="envelopeFooter-middle-bgRight"></div>
-                <Link className="headerBump_bump-link" to="/">
+                <Link className="envelopeFooter-middle-logo" to="/">
                     <img src={PHP_VARS['custom_logo_src']} alt="logo" />
                 </Link>
             </div>
 
             <div className="envelopeFooter-bottom">
+
+                <div className="envelopeFooter-bottom-layoutSwitch">
+                    <Link className="envelopeFooter-bottom-layoutSwitch-logo" to="/">
+                        <img src={PHP_VARS['custom_logo_src']} alt="logo" />
+                    </Link>
+                </div>
 
                 <div className="envelopeFooter-bottom-icons">
                     <a className="envelopeFooter-bottom-icons-icon" href="https://github.com/super-Colin" target="_blank">
@@ -41,6 +47,11 @@ const Footer = () => {
                 </div>
 
                 <div className="envelopeFooter-bottom-content">
+                    <p style={{fontSize:'1.2rem'}} >
+                        There used to be a form here, but it's easier to just email me directly at <br />
+                        <br />
+                        <a href="mailto:SuperColin@SuperColin.dev" className="heading envelopeFooter-top-link-title" style={{color: "#fff"}}>SuperColin@SuperColin.dev</a> 
+                    </p>
                     {/* <form action="" className="envelopeFooter-bottom-form">
                         <label for="name">Name</label>
                         <input type="text" name="name" id="name" placeholder="Name">

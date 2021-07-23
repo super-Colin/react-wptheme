@@ -94,6 +94,7 @@ export class Provider extends React.Component {
 
   htmlDecode(input) {
     var doc = new DOMParser().parseFromString(input, "text/html");
+    // console.log('decode html returning:', doc.documentElement.textContent);
     return doc.documentElement.textContent;
   }
 

@@ -6,6 +6,9 @@
     display: none;
     clip-path: 1px 1px;
 }
+.sc_gutters{
+    @include block_margin-x;
+}
 
 .bgBrand{background-color: $color_main;}
 .colorBrand{color: $color_main;}

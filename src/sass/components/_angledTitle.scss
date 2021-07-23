@@ -1,0 +1,35 @@
+.angledTitle {
+  padding: .25rem .5rem;
+  width: 100%;
+  position: relative;
+  background-color: $color_gray-800;
+  color: $color_white;
+  font-size: 1.5rem;
+  overflow: hidden
+}
+
+.angledTitle::after,
+.angledTitle::before {
+  display: block;
+  content: "";
+  width: 2vw;
+  height: 500%;
+  transform-origin: 0 70%;
+  transform: rotate(-60deg);
+  position: absolute;
+  right: 10vw;
+  bottom: 0;
+  background-color: $theme_design-preview-bg;
+}
+
+.angledTitle::before {
+  bottom: -150%;
+  background-color: $theme_color-main;
+}
+
+.angledTitle::after {
+  transform-origin: bottom left;
+  width: 20vw;
+  right: -20vw;
+  bottom: 0
+}

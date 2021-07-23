@@ -1,5 +1,7 @@
+
+$headerBump_container:4rem;
 .headerBump_container {
-  height: 50px;
+  height: $headerBump_container;
   position: sticky;
   top: 0;
   left: 0;
@@ -70,7 +72,6 @@
 
 .headerBump_bump::after,
 .headerBump_bump::before {
-  // height: 50px;
   display: block;
   content: "";
   position: absolute;
@@ -92,14 +93,14 @@
 }
 
 .headerBump_bump-link {
-  height: 50px;
+  height: $headerBump_container;
   margin-left: auto;
   margin-right: auto;
 }
 
 .headerBump_bump-link img {
   max-height: 100%;
-  height: 50px;
+  height: $headerBump_container;
   display: block;
   margin: 0 auto;
   padding: 4px 0;

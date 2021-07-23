@@ -1,0 +1,31 @@
+
+
+ul{
+  // list-style: circle;
+}
+ul::before, ul::after, ul li::before, ul li::after{ display: inline-block; white-space: pre;}
+
+// ul::before{ content: "[ "; }
+// ul::after{ content: " ]";  }
+
+
+
+ul li::before{ content: "(  "; }
+ul li::after{ content: "  ),"; }
+ul li:first-of-type::before{ content: "[( "; }
+ul li:last-of-type::after{ content: " )]"; }
+
+ul ul li::before{ content: "< "; }
+ul ul li::after{ content: "  />,"; }
+ul ul li:first-of-type::before{ content: "(< "; }
+ul ul li:last-of-type::after{ content: " />),"; }
+
+
+ul li{
+  // display: inline-block;
+}
+ul ul{
+  margin-left: 1.3em;
+}
+
+

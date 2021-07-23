@@ -28,9 +28,10 @@
 }
 
 .envelopeFooter-top-links {
-  justify-content: space-between;
+  // justify-content: space-between;
+  display: flex;
+  justify-content: center;
   color: #fff;
-  display: none
 }
 
 @media(min-width:600px) {
@@ -60,7 +61,7 @@
   position: relative;
   margin-top: -20%;
   padding-top: 12vw;
-  height: 32vw;
+  height: 30vw;
   display: flex;
   justify-content: center;
   align-items: center
@@ -119,8 +120,8 @@
   position: relative;
   z-index: 5;
   padding: 1.4rem 1.4rem;
-  border-top: 3px solid #fff;
-  background-color: #ed6c25;
+  border-top: 3px solid $color-white;
+  background-color: $theme_color-main;
   text-align: center;
   padding-bottom: 10vw
 }
@@ -167,14 +168,25 @@
   max-height: 100%;
   fill: #000
 }
+.envelopeFooter-bottom-content {
+  // width: 100%;
+  display: none;
+  @include block_margin-y-top;
+  @include breakpoint('for-tabletLandscape') {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
 
 .envelopeFooter-bottom-content-emailLink {
-  display: inline-block;
+  // display: inline-block;
+  display: none;
   margin-top: 2.4rem;
   margin-bottom: 1.4rem;
   color: #000;
   font-size: 1.2rem;
-  font-weight: 700
+  font-weight: 700;
 }
 
 .envelopeFooter-bottom-form {
@@ -257,19 +269,21 @@
 }
 
 .envelopeFooter-bottom-toTop {
+  display: none;
   width: 20vw;
   height: 20vw;
   position: absolute;
   bottom: 0;
   right: 0;
-  display: flex;
   justify-content: center;
   align-items: center;
-  display: flex;
   flex-direction: column;
   background-color: #fff;
   color: #000;
-  cursor: pointer
+  cursor: pointer;
+  @include breakpoint('for-tabletLandscape'){
+    display: flex;
+  }
 }
 
 html {
@@ -302,13 +316,13 @@ html {
   }
 
   .envelopeFooter-top {
-    height: 30vw
+    height: 24vw
   }
 
   .envelopeFooter-middle {
     position: relative;
     padding-top: 11.25vw;
-    height: 30vw
+    height: 23vw
   }
 
   .envelopeFooter-middle-logo img,
@@ -366,13 +380,13 @@ html {
   }
 
   .envelopeFooter-top {
-    height: 26.4vw
+    height: 22vw
   }
 
   .envelopeFooter-middle {
     position: relative;
     padding-top: 9vw;
-    height: 21vw;
+    height: 19vw;
     padding-bottom: 1.2vw;
     align-items: flex-end
   }
@@ -410,7 +424,7 @@ html {
   }
 
   .envelopeFooter-bottom-content {
-    width: 100%
+    width: 100%;
   }
 
   .envelopeFooter-bottom-content-emailLink {

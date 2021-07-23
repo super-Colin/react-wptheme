@@ -1,5 +1,7 @@
 @use "sass:math";
-$numberOfSquares:10; // change in JS as well!
+$numberOfSquares: 13; // change in JS as well!
+$totalHeight: 50vh;
+$movingSquares-duration: 7s;
 
 // <section class="movingSquares_container">
 //   <div class="movingSquares_content"><h2 class="movingSquares_content-title"></h2>
@@ -16,9 +18,8 @@ $numberOfSquares:10; // change in JS as well!
 // </section>
 
 
-
 .movingSquares_container {
-  height: 100vh;
+  height: $totalHeight;
   width: 100%;
   overflow: hidden;
   position: relative;
@@ -54,7 +55,7 @@ $numberOfSquares:10; // change in JS as well!
   color: #220d20;
   content: "";
   animation-name: changeContent;
-  animation-duration: 24s;
+  animation-duration: $movingSquares-duration * 4;
   animation-iteration-count: infinite
 }
 
@@ -66,7 +67,7 @@ $numberOfSquares:10; // change in JS as well!
   top: 0;
   left: 0;
   animation-name: moveSide;
-  animation-duration: 6s;
+  animation-duration: $movingSquares-duration ;
   animation-timing-function: ease-in-out;
   animation-direction: alternate;
   animation-iteration-count: infinite;
@@ -90,17 +91,17 @@ $numberOfSquares:10; // change in JS as well!
     height: 0;
   }
   to {
-    height: 100vh;
+    height: $totalHeight;
   }
 }
 
 @keyframes changeContent {
   0% {
-    content: "Super Colin"
+    content: "Ingenuity"
   }
 
   22% {
-    content: "Super Colin"
+    content: "Creativity"
   }
 
   47% {
@@ -108,15 +109,15 @@ $numberOfSquares:10; // change in JS as well!
   }
 
   72% {
-    content: "Creativity"
+    content: "Motivation"
   }
 
   97% {
-    content: "Ingenuity"
+    content: "Foresight"
   }
 
   100% {
-    content: "Ingenuity"
+    content: "Unstoppable"
   }
 }
 

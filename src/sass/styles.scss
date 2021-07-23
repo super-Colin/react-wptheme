@@ -21,6 +21,7 @@ Use it to make something cool, have fun, and !!! share what you've learned with 
 
 @import './globals/_globals';             //variables, theme colors, mixins, screen-size breakpoints
 @import './base/_base';                   // normalize, apply some preferenctial styles(vw based rem)
+@import './elements/_elements';
 @import './components/_components';       // ui components, buttons, icons, etc
 @import './blocks/_blocks';               // block-based components, html containers, etc
 // @import './plugins/_plugins';

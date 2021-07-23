@@ -14,7 +14,7 @@ const DesignTheLoop = ({ context }) => {
       results = <div className="app-error">{context.appError}</div>;      
     }else{
       if(pos.length === 0){
-        results = <div className="no-results">no results</div>;
+        results = <div className="no-results">Working on it.</div>;
       }else{
         results = pos.map(function(item,i){
             return <DesignThePost key={i} index={i}></DesignThePost>

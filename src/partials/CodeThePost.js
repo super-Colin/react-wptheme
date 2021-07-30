@@ -26,7 +26,7 @@ const CodeThePost = ({index,context}) => {
             <h1>
                 Code <Link to={ '/code' + context.pageUrlToPath(item.link)} >{context.htmlDecode(item.title.rendered)}</Link>
             </h1>
-            <PostMeta index={index}></PostMeta>
+            {/* <PostMeta index={index}></PostMeta> */}
             <div className="post-content sc_gutters" dangerouslySetInnerHTML={{__html:theContent}}></div>
         </div>);
 

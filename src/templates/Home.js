@@ -3,6 +3,7 @@ import { Provider } from '../context/Context';
 
 import FrontPageHero from '../partials/FrontPageHero';
 import Header from "../partials/Header";
+import LineAbyss from '../partials/LineAbyss';
 import Footer from "../partials/Footer";
 
 const Home = (props) => {
@@ -12,8 +13,9 @@ return (
   <FrontPageHero />
 
   <Header />
+  <LineAbyss />
 
-  <section className="quoteBio_container">
+  <section className="quoteBio_container" style={{opacity:0}}>
     <h1 className="quoteBio_quote">SuperColin is the idea that anything is possible given enough effort.</h1>
     <div className="quoteBio_imgBg overlayTint_container">
       <img className="overlayTint_bgImage" src={window.PHP_VARS.template_directory + "/imgs/code-wide.png" } alt="" />

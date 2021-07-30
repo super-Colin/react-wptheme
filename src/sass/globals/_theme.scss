@@ -25,14 +25,20 @@ $theme_color-icon-black: #000;
 // TYPE
 $theme_link-font-family-main: '';
 
-$theme_heading-font-family-main: 'Merriweather', serif;
+    // font-family: 'Train One', cursive;
+
+    // font-family: 'Zen Dots', cursive;
+
+$theme_heading-font-family-main: 'Zen Dots', cursive;
+// $theme_heading-font-family-main: 'Turret Road', cursive;
 $theme_heading-font-family-accent: 'Merriweather', serif; 
 $theme_heading-font-weight-light: 300;
 $theme_heading-font-weight-main: 400; // Incase your font's normal weight is 500
 $theme_heading-font-weight-bold: 700; 
 
 
-$theme_body-font-family-main: 'Open Sans', sans-serif;
+$theme_body-font-family-main: 'Turret Road', cursive;
+// $theme_body-font-family-main: 'Zen Dots', cursive;
 $theme_body-font-family-accent: 'Open Sans', sans-serif;
 $theme_body-font-weight-light: 300;
 $theme_body-font-weight-main: 400;

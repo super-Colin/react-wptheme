@@ -21,7 +21,7 @@ const DesignTheLoop = ({ context }) => {
           })
       }
     }
-    return ( results);
+    return ( results );
 
 };
 export default WithConsumer(DesignTheLoop);

@@ -1282,7 +1282,6 @@ html {
   width: 33%;
   position: sticky;
   max-height: 80vh;
-  left: 4vw;
   top: 3.1rem;
   display: none;
 }
@@ -1290,6 +1289,21 @@ html {
   .frontPageListing_chaptersListing {
     display: block;
   }
+}
+
+.frontPageListing_chaptersListing li {
+  margin-bottom: 0.25rem;
+}
+
+.frontPageListing_chaptersListing li:first-of-type::before,
+.frontPageListing_chaptersListing li::before {
+  content: "~ ";
+}
+
+.frontPageListing_chaptersListing::before,
+.frontPageListing_chaptersListing::after,
+.frontPageListing_chaptersListing li::after {
+  display: none;
 }
 
 .frontPageListing_excerptsListing {
@@ -1318,9 +1332,9 @@ html {
 .frontPageListing_excerpts-excerpt-title {
   color: #FFF;
   font-size: 1.8rem;
-  margin-bottom: 0.8rem;
 }
 
+.frontPageListing_chaptersListing a:visited,
 .frontPageListing_excerpts-excerpt-title:visited {
   color: #FFF;
 }

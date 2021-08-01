@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, {useEffect} from 'react';
 
 // ~~~~~ Create HTML 
 function makeMovingLines(){
@@ -17,7 +17,7 @@ function lineAbyssScrollHandler(){
   let currentScrollPosition = window.scrollY;
   var percentageDownPage = percentageOfPageScrolled();
 
-  rotateLinesContainer(percentageDownPage, 60, 15, '-');
+  rotateLinesContainer(percentageDownPage, 60, 36, '-');
   moveLines(currentScrollPosition);
 }
 
@@ -31,20 +31,20 @@ function rotateLinesContainer(currentScrollPercentage, targetAngle, doneByPercen
 
 function moveLines(){
   const lines = document.querySelectorAll('.lineAbyss_movingLine');
-  const scrollAmountToCompleteAnimation = 200; //px's
+  const scrollAmountToCompleteAnimation = 100; //px's
   const percentThroughAnimation = window.scrollY % scrollAmountToCompleteAnimation / scrollAmountToCompleteAnimation; //as a decimal
-  const exponent = 2;
+  const exponent = 3;
   const movementHighestExponentResult = Math.pow(lines.length, exponent);
   // console.log('percent through animation: ', percentThroughAnimation, movementHighestExponentResult);
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
-    const invertedNumber = invertNumberInRange( i , lines.length ); // make the number we use a count down 
+    const invertedNumber = invertNumberInRange( i , lines.length ); // make the number we use a count down
     const exponentPercentOfHighest = Math.pow(invertedNumber, exponent) / movementHighestExponentResult;
     const lineMovementLowerBound = exponentPercentOfHighest; // creates an expoential curve
     const lineMovementUpperBound = Math.pow(invertedNumber + 1, exponent) / movementHighestExponentResult;
     const lineMovement = ( lineMovementUpperBound - lineMovementLowerBound ) * percentThroughAnimation + lineMovementLowerBound;
     const left = Math.round(Math.min( lineMovement, 100) * 1000) * 0.1; //put into 1~100 format
-    const width = lineMovement * 14;
+    const width = lineMovement * 18;
     // if(i = 1){console.log('left is: ', left, 'width is: ', width)};
     // console.log('left is: ', left, 'width is: ', width)
     line.style.left = left + '%';

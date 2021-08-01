@@ -1,5 +1,5 @@
 
-
+$frontPage_listing-textColor: $theme_color-white;
 
 .frontPageListing_container{
   display: flex;
@@ -17,12 +17,24 @@
   width: 33%;
   position: sticky;
   max-height: 80vh;
-  left: $spacing_block-margin-x-gutter;
+  // left: $spacing_block-margin-x-gutter;
   top: $spacing_block-margin-y-medium;
   display: none;
   @include breakpoint('for-tabletLandscape') {
     display: block
   };
+}
+.frontPageListing_chaptersListing li{
+  margin-bottom: $spacing_xxxsmall;
+}
+.frontPageListing_chaptersListing li:first-of-type::before,
+.frontPageListing_chaptersListing li::before{
+  content: '~ ';
+}
+.frontPageListing_chaptersListing::before,
+.frontPageListing_chaptersListing::after,
+.frontPageListing_chaptersListing li::after {
+  display: none;
 }
 
 .frontPageListing_excerptsListing{
@@ -37,10 +49,11 @@
   @include block_margin-y-bottom;
 }
 .frontPageListing_excerpts-excerpt-title{
-  color: $theme_color-white;
+  color: $frontPage_listing-textColor;
   font-size: $type_heading-font-size-medium;
-  margin-bottom: $spacing_small;
 }
+
+.frontPageListing_chaptersListing a:visited,
 .frontPageListing_excerpts-excerpt-title:visited{
-  color: $theme_color-white;
+  color: $frontPage_listing-textColor;
 }

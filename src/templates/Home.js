@@ -2,11 +2,11 @@ import React from 'react'
 import { Provider } from '../context/Context';
 
 import FrontPageHero from '../partials/FrontPageHero';
-import Header from "../partials/Header";
 import LineAbyss from '../partials/LineAbyss';
-import Footer from "../partials/Footer";
 
 import FrontPageListing from '../partials/FrontPageListing';
+
+// console.log('home component');
 
 const Home = (props) => {
 return (
@@ -14,12 +14,10 @@ return (
 
   <FrontPageHero />
 
-  {/* <Header /> */}
   <LineAbyss />
 
   <FrontPageListing />
   
-  {/* <Footer /> */}
 </Provider>
 )
 }

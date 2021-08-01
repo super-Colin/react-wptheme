@@ -1,21 +1,26 @@
 import React from 'react';
-import Header from '../partials/Header';
-import CodeTheLoop from '../partials/CodeTheLoop';
-import Footer from '../partials/Footer';
 import {Provider} from '../context/Context'
-// import CommentList from '../partials/CommentList';
-// import CommentForm from '../partials/CommentForm';
 
-const Single = (props) => {  
+import LineAbyss from '../partials/LineAbyss';
+import FrontPageHero from '../partials/FrontPageHero';
+import FrontPageListingSingle from '../partials/FrontPageListingSingle';
+
+console.log('Single component');
+const Single = (props) => {
 
   return (
     <Provider router={props} >
+      <LineAbyss />
+
       <div className="Post">
-        <Header />
         <div className="content-area">
-        <CodeTheLoop />
+
+          {/* <FrontPageHero /> */}
+
+          <FrontPageListingSingle />
+          {/* context.appError ? <p>error</p> : <FrontPageListingSingle /> */}
         </div>
-        <Footer />
+
       </div>
     </Provider>
   )

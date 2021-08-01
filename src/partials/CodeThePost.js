@@ -11,12 +11,12 @@ const CodeThePost = ({index,context}) => {
     
     switch(context.route){
         case '/code/': // if overview archive
-            // theContent = context.htmlDecode(item.excerpt.rendered); //show excerpt only
+            // theContent = context.decodeHtmlText(item.excerpt.rendered); //show excerpt only
             theContent = item.excerpt.rendered; //show excerpt only
         break;
         default: //for single, pages - show entire content
         // console.log('ThePost full content rendered', item.content);
-            // theContent = context.htmlDecode(item.content.rendered);
+            // theContent = context.decodeHtmlText(item.content.rendered);
             theContent = item.content.rendered;
         break;
     }   
@@ -24,7 +24,7 @@ const CodeThePost = ({index,context}) => {
     return (
         <div id={'post-id-' + item.id} className={'post-item'}>
             <h1>
-                Code <Link to={ '/code' + context.pageUrlToPath(item.link)} >{context.htmlDecode(item.title.rendered)}</Link>
+                Code <Link to={ '/code' + context.pageUrlToPath(item.link)} >{context.decodeHtmlText(item.title.rendered)}</Link>
             </h1>
             {/* <PostMeta index={index}></PostMeta> */}
             <div className="post-content sc_gutters" dangerouslySetInnerHTML={{__html:theContent}}></div>

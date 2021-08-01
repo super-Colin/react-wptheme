@@ -12,7 +12,8 @@
         "react": "^17.0.2",
         "react-dom": "^17.0.2",
         "react-moment": "^1.1.1",
-        "react-router-dom": "^5.2.0"
+        "react-router-dom": "^5.2.0",
+        "react-router-hash-link": "^2.4.3"
     },
     "scripts": {
         "crabuild": "react-scripts build",
@@ -39,6 +40,8 @@
             "last 1 safari version"
         ]
     },
-    "homepage": "/wtp/wp-content/themes/supercolin_react2",
-    "browserLaunchTo": "https://localhost/wtp"
+    "homepage": "/scwp/wp-content/themes/supercolin_react2", 
+    "homepage// PRODUCTION": "/wp-content/themes/supercolin_react2", 
+    "homepage// DEV ENV ONLY": "/scwp/wp-content/themes/supercolin_react2", 
+    "browserLaunchTo": "https://localhost/scwp"
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 import WithConsumer from '../context/WithConsumer';
 import { Link } from 'react-router-dom';
+import { HashLink} from 'react-router-hash-link';
 
 
 function getChaptersAndExcerpts(context){
@@ -8,10 +9,13 @@ function getChaptersAndExcerpts(context){
   let chapterResults = [];
   let excerptsResults = [];
   posts.map((item, i)=>{
-    chapterResults.push(<div key={i}>{item.title.rendered}</div>);
+    const itemTitle = context.decodeHtmlText(item.title.rendered);
+    // chapterResults.push(<li key={i}>{item.title.rendered}</li>);
+    // chapterResults.push(<Link to={{hash:itemTitle}} key={i}>{itemTitle}</Link>);
+    chapterResults.push(<li><HashLink smooth to={'/#' + itemTitle} key={i}>{itemTitle}</HashLink></li>);
     excerptsResults.push(
-    <div key={i} className="frontPageListing_excerpts-excerpt">
-      <Link to={context.pageUrlToPath(item.link)} className="frontPageListing_excerpts-excerpt-title" >{item.title.rendered}</Link>
+    <div key={i} id={itemTitle} className="frontPageListing_excerpts-excerpt">
+      <Link to={context.pageUrlToPath(item.link)} className="frontPageListing_excerpts-excerpt-title" >{itemTitle}</Link>
       <div dangerouslySetInnerHTML={{__html:item.excerpt.rendered}}></div>
     </div>
     );
@@ -28,11 +32,11 @@ const FrontPageListing = ( {context} ) => {
         <h2 className="frontPageListing_title">Some Stuff To Read</h2>
       </div>
 
-      <div className="frontPageListing_chaptersListing">
-        <div>{
+      {/* <div className="frontPageListing_chaptersListing"> */}
+        <ul className="frontPageListing_chaptersListing">{
           chaptersAndPosts.chapters.map( (item) =>  item )
-        }</div>
-      </div>
+        }</ul>
+      {/* </div> */}
 
       <div className="frontPageListing_excerptsListing">
         <div>{

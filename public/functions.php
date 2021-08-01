@@ -11,18 +11,16 @@ function register_sc_menus() {
         )
     );
 }
-// Assign menus to a global JS variable on front-end page load
+// Assign PHP variables to a global JS variable on front-end page load
 function sc_importMenusToJs(){
     $menuJsPath = get_template_directory_uri() . '/sc_importMenusToJs.js';
-    $menuLocations = get_nav_menu_locations();
+    // $menuLocations = get_nav_menu_locations();
 
     wp_enqueue_style( 'sc_style', get_stylesheet_uri(), array(), '1.0.0' );
     wp_enqueue_script('sc_getMenus', $menuJsPath, '1', false);
 
     wp_add_inline_script( 'sc_getMenus', 'window.PHP_VARS = ' . json_encode( array(
-        'header_menu_left_items' => wp_get_nav_menu_items( $menuLocations['header-menu-left'] ),
-        'header_menu_right_items' => wp_get_nav_menu_items( $menuLocations['header-menu-right'] ),
-        'footer_menu_items' => wp_get_nav_menu_items( $menuLocations['footer-menu'] ),
+        // 'footer_menu_items' => wp_get_nav_menu_items( $menuLocations['footer-menu'] ),
         'custom_logo_src' => sc_get_custom_logo_src(),
         'categories' => get_categories(),
         'template_directory' => get_template_directory_uri()
@@ -45,7 +43,7 @@ function sc_get_custom_logo_src(){
     $custom_logo_id = get_theme_mod('custom_logo');
     $image = wp_get_attachment_image_src( $custom_logo_id , 'full' );
     if(empty($image)){
-        echo "logo image was empty";
+        // echo "logo image was empty";
         return get_template_directory_uri() . '/imgs/logo.png';
     }
     return  $image[0];

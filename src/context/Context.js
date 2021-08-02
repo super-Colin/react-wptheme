@@ -107,18 +107,21 @@ export class Provider extends React.Component {
 
   pageUrlToPath = (pageURL) => {
     let domainRelativePath = pageURL.split( this.getDomainPrefix() )[1];
+    console.log('pageUrlToPath domainRelativePath: ', domainRelativePath, 'from: ', pageURL);
+    if( ! domainRelativePath ){
+      return '/';
+    }
     return domainRelativePath;
   }
   getDomainPrefix = ()=>{
     const { pathname } = useLocation();
-    let  domainPrefix = "";
-    if(pathname === "/"){
-      domainPrefix =  window.location.href.split('://')[1]; // ["http", "website.com/"]
-    }else{
-      let domainPrefixMinusHttp = window.location.href.split('://')[1]; // ["http", "website.com/some"]
-      domainPrefix = domainPrefixMinusHttp.split(pathname)[0]; // ["website.com"]
+    let locationMinusHttp = window.location.href.split('://')[1]; // ["http://",  "website.com/some/#hash-link"]
+    let locationMinusHashLink = locationMinusHttp.split('#')[0]; // ["website.com/some/", "#hash-link"]
+    if(pathname === "/"){ 
+      return locationMinusHashLink; 
+    }else{ 
+      return locationMinusHashLink.split(pathname)[0]; // ["website.com/", "some/"]
     }
-    return domainPrefix;
   }
 
 

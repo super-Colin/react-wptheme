@@ -44,7 +44,7 @@ function moveLines(){
     const lineMovementUpperBound = Math.pow(invertedNumber + 1, exponent) / movementHighestExponentResult;
     const lineMovement = ( lineMovementUpperBound - lineMovementLowerBound ) * percentThroughAnimation + lineMovementLowerBound;
     const left = Math.round(Math.min( lineMovement, 100) * 1000) * 0.1; //put into 1~100 format
-    const width = lineMovement * 18;
+    const width = lineMovement * 27;
     // if(i = 1){console.log('left is: ', left, 'width is: ', width)};
     // console.log('left is: ', left, 'width is: ', width)
     line.style.left = left + '%';

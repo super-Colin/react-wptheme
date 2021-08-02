@@ -1,7 +1,9 @@
 import React from 'react';
 import {Provider} from '../context/Context'
 
-import LineAbyss from '../partials/LineAbyss';
+import { motion } from 'framer-motion';
+
+// import LineAbyss from '../partials/LineAbyss';
 import FrontPageHero from '../partials/FrontPageHero';
 import FrontPageListingSingle from '../partials/FrontPageListingSingle';
 
@@ -9,8 +11,9 @@ console.log('Single component');
 const Single = (props) => {
 
   return (
+    <motion.div initial={{ opacity:0}} animate={{ opacity:1}} exit={{ opacity:0}}>
     <Provider router={props} >
-      <LineAbyss />
+      {/* <LineAbyss /> */}
 
       <div className="Post">
         <div className="content-area">
@@ -23,6 +26,7 @@ const Single = (props) => {
 
       </div>
     </Provider>
+    </motion.div>
   )
 
 }

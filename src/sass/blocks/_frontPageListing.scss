@@ -49,11 +49,14 @@ $frontPage_listing-textColor: $theme_color-white;
   @include block_margin-y-bottom;
 }
 .frontPageListing_excerpts-excerpt-title{
-  color: $frontPage_listing-textColor;
+  display: block;
   font-size: $type_heading-font-size-medium;
+  margin-bottom: $spacing_xsmall;
 }
 
+.frontPageListing_chaptersListing a,
 .frontPageListing_chaptersListing a:visited,
+.frontPageListing_excerpts-excerpt-title,
 .frontPageListing_excerpts-excerpt-title:visited{
   color: $frontPage_listing-textColor;
 }

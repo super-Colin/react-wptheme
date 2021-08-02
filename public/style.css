@@ -1330,11 +1330,14 @@ html {
 }
 
 .frontPageListing_excerpts-excerpt-title {
-  color: #FFF;
+  display: block;
   font-size: 1.8rem;
+  margin-bottom: 0.6rem;
 }
 
+.frontPageListing_chaptersListing a,
 .frontPageListing_chaptersListing a:visited,
+.frontPageListing_excerpts-excerpt-title,
 .frontPageListing_excerpts-excerpt-title:visited {
   color: #FFF;
 }

@@ -1,6 +1,6 @@
 import React from "react";
 import Axios from "axios";
-import { useLocation } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 //context api:  
 //https://medium.com/datadriveninvestor/getting-started-w-reacts-context-api-f60aa9be758f
 
@@ -16,11 +16,14 @@ export class Provider extends React.Component {
     let route = props.router.match.path;
     let slug = props.router.match.params.slug ? props.router.match.params.slug : '';
     let term = props.router.match.params.term ? props.router.match.params.term : '';
+    let categoryIds = this.getCategoryIdsAsDictionary();
+    
 
     this.state = {
       PHP_VARS : window.PHP_VARS, //PHP VARS are set in the functions.php file in /public
       term : term,
       slug : slug,
+      heroSeen : false,
       // restType : restType,
       restType : 'post',
       route : route,
@@ -28,10 +31,12 @@ export class Provider extends React.Component {
       currentPage : 1,
       totalPages : 0,
       appError : '',
+      categoryIds : categoryIds,
 
       //global methods
       pageUrlToPath : this.pageUrlToPath.bind(this),
       decodeHtmlText : this.decodeHtmlText.bind(this),
+      getCategoryIdsAsDictionary: this.getCategoryIdsAsDictionary.bind(this),
     };
   }
 
@@ -41,25 +46,46 @@ export class Provider extends React.Component {
   // ~~~ React State ~~~
   // ~~~~~~~~~~~~~~~~~~~
   componentDidMount(){
+    // window.scrollTo(0, 0)
+//     window.scroll({
+// 	top: 0,
+// 	behavior: "smooth"
+// });
+    // document.getElementById("content").scrollIntoView(true);
     console.log('[[[componentDidMount]]]');
+    console.log('[[[componentDidMount]]] ROUTER state: ', this.props.router);
     let slug = this.props.router.match.params.slug ? this.props.router.match.params.slug : '';
+    if(this.props.router.location.pathname !== '/'){
+      slug = this.props.router.location.pathname;
+      this.setState({slug: slug});
+    }
     this.getPosts(this.buildUrl(slug));
+    this.getCategoryIdsAsDictionary()
   }
 
   componentDidUpdate(prevProps){ 
-    console.log('[[[componentDidUpdate]]] recieving: ', prevProps)
+//     window.scroll({
+// 	top: 0,
+// 	behavior: "smooth"
+// });
+// document.getElementById("content").scrollIntoView(true);
+
+    console.log('[[[componentDidUpdate]]] prevProps: ', prevProps)
+    console.log('[[[componentDidUpdate]]] router log: ', this.props.router.match)
     let slug = this.props.router.match.params.slug ? this.props.router.match.params.slug : '';
+    if(this.props.router.location.pathname !== '/'){
+      slug = this.props.router.location.pathname;
+    }
     if(prevProps.router.location.pathname !== this.props.router.location.pathname){  
-      let curProps = this.props.router.match;       
       this.setState({
         currentPage : 1,
         slug: slug,
-        restType : this.getRestType(curProps.path),
+        heroSeen: true
       },
       function(){
         let url = this.buildUrl(slug);
         let results = this.getPosts(url);
-        console.log('componentDidUpdate url: ', url, 'results: ', results );        
+        console.log('[[[componentDidUpdate url]]]: Slug',slug ,'url', url, 'results: ', results );        
         return results;
       })
       
@@ -74,7 +100,7 @@ export class Provider extends React.Component {
     let self = this;
     
     Axios.get(url).then((response)=>{
-      console.log('getPosts url, response.data: ', url, response.data);
+      // console.log('getPosts url, response.data: ', url, response.data);
       self.setState({
         posts : response.data, 
         totalPages : response.headers['x-wp-totalpages']
@@ -100,21 +126,22 @@ export class Provider extends React.Component {
   // ~~~~~~~~~~~
   // ~~ UTILS ~~
   // ~~~~~~~~~~~
-  decodeHtmlText(input) {
+  decodeHtmlText(input) { // decode html entities out of text
     var doc = new DOMParser().parseFromString(input, "text/html");
     return doc.documentElement.textContent;
   }
 
   pageUrlToPath = (pageURL) => {
     let domainRelativePath = pageURL.split( this.getDomainPrefix() )[1];
-    console.log('pageUrlToPath domainRelativePath: ', domainRelativePath, 'from: ', pageURL);
+    // console.log('pageUrlToPath domainRelativePath: ', domainRelativePath, 'from: ', pageURL);
     if( ! domainRelativePath ){
       return '/';
     }
     return domainRelativePath;
   }
-  getDomainPrefix = ()=>{
+  getDomainPrefix = ()=>{ //should I move this to state? to reduce calls to this function??
     const { pathname } = useLocation();
+    // console.log('ROUTER PARAMS: ', useParams());
     let locationMinusHttp = window.location.href.split('://')[1]; // ["http://",  "website.com/some/#hash-link"]
     let locationMinusHashLink = locationMinusHttp.split('#')[0]; // ["website.com/some/", "#hash-link"]
     if(pathname === "/"){ 
@@ -124,7 +151,23 @@ export class Provider extends React.Component {
     }
   }
 
+  getCategoryIdsAsDictionary(){
+    let categoryIds = {};
+    window.PHP_VARS.categories.map((item)=>{
+      let idNumber = item.term_id;
+      // console.log('getCategoryIdsAsDictionary LOOPING: ', categoryIds[idNumber], item.name);
+      if(! categoryIds[idNumber]){
+        categoryIds[idNumber] = item.name;
+      }
+    });
+    return categoryIds;
+  }
 
+
+
+  // ~~~~~~~~~~~~
+  // ~~ RENDER ~~
+  // ~~~~~~~~~~~~
   render() {
     return (
       <storeContext.Provider value={this.state}>

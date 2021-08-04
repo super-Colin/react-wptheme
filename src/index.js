@@ -1,44 +1,52 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Switch, Route, useLocation } from 'react-router-dom';
-import { AnimatePresence, motion } from 'framer-motion';
+import { BrowserRouter, Switch, Route, withRouter } from 'react-router-dom';
+import { Provider } from './context/Context';
 
+import { AnimatePresence } from 'framer-motion';
 
-
-import Home from "./templates/Home";
-import Single from './templates/Single';
 import NotFound from "./templates/NotFound";
 
 import LineAbyss from './partials/LineAbyss';
+import FrontPageHero from './partials/FrontPageHero';
+// import FrontPageListingFull from './templates/FrontPageListingFull';
+import FrontPageListing from './partials/FrontPageListing';
+import FrontPageListingSingle from './partials/FrontPageListingSingle';
 
-// const location = useLocation();
+// https://stackoverflow.com/questions/47298325/react-router-dom-getting-props-location-from-within-browserrouter-component#answer-49003128
+  const ContentWithRouter = withRouter( props => {return(
 
+<Provider router={props}>
+        {console.log('IN CONTENT props: ', props)} 
 
+        {/* <FrontPageHero /> */}
 
+        {/* <AnimatePresence exitBeforeEnter> */}
+        <AnimatePresence >
+          {/* <Switch location={props.location} key={props.location.path}> */}
+          <Switch >
+            <Route exact path="/" component={FrontPageListing} />
+            <Route path="/:slug" component={FrontPageListingSingle} />
+            <Route component={NotFound} />
+          </Switch>
+        </AnimatePresence>
+
+        <style>{"#wpadminbar{display: none;} html{margin-top: 0 !important;}"}</style> 
+        {/* FOR DEV ENV, hide the wp admin bar on front end */}
+      </Provider>
+
+  )})
+
+// {/* basname is only for local dev XAMPP environment REMOVE before building for prod DEV ENV */}
+// {/* for example, my local WP home page frontend is at    http://localhost/scwp/    */}
+// {/* https://reactrouter.com/web/api/BrowserRouter/basename-string */}
 ReactDOM.render(
-  <BrowserRouter basename="/scwp" >
-
-    <AnimatePresence exitBeforeEnter>
-      {/* <Switch location={location} key={location.pathname}> */}
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route path="/:slug" component={Single} />
-
-        <Route component={NotFound} />
-        
-      </Switch>
-    </AnimatePresence>
-
+  <BrowserRouter basename="/scwp" > {/* // DEV ENV ONLY, remove basename */}
+    <ContentWithRouter />
     <LineAbyss />
-
-  
-    {/* basname is only for local dev XAMPP environment REMOVE before building for prod DEV ENV */}
-    {/* for example, my local WP home page frontend is at    http://localhost/scwp/    */}
-    {/* https://reactrouter.com/web/api/BrowserRouter/basename-string */}
-    <style>{"#wpadminbar{display: none;} html{margin-top: 0 !important;}"}</style> 
-    {/* FOR DEV ENV, hide the wp admin bar on front end */}
-    
   </BrowserRouter>
   , document.getElementById('root') 
 );
+
+
 

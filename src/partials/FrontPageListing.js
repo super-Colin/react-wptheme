@@ -3,16 +3,37 @@ import WithConsumer from '../context/WithConsumer';
 import { Link } from 'react-router-dom';
 import { HashLink} from 'react-router-hash-link';
 
+import FrontPageHero from '../partials/FrontPageHero';
+import { motion } from 'framer-motion';
+
+
+
 
 function getChaptersAndExcerpts(context){
+
+  console.log('getChaptersAndExcerpts', context);
   const posts = context.posts;
+  posts.sort( (a,b) => { // sort posts array by category
+    if (a.categories[0] < b.categories[0]) {
+      return -1;
+    } else if (a.categories[0] > b.categories[0]) {
+      return 1;
+    } else {
+      return 0;
+    }
+  });
   let chapterResults = [];
   let excerptsResults = [];
+
   posts.map((item, i)=>{
-    const itemTitle = context.decodeHtmlText(item.title.rendered);
-    // chapterResults.push(<li key={i}>{item.title.rendered}</li>);
-    // chapterResults.push(<Link to={{hash:itemTitle}} key={i}>{itemTitle}</Link>);
-    chapterResults.push(<li><HashLink smooth to={'/#' + itemTitle} key={i}>{itemTitle}</HashLink></li>);
+    const itemTitle = context.decodeHtmlText(item.title.rendered); //remove html entitites
+    const itemCategoryId = item.categories[0];
+
+    chapterResults.push(
+    <li key={i} ><HashLink smooth to={'/#' + itemTitle}>{itemTitle}</HashLink></li>
+    );
+
+
     excerptsResults.push(
     <div key={i} id={itemTitle} className="frontPageListing_excerpts-excerpt">
       <Link to={context.pageUrlToPath(item.link)} className="frontPageListing_excerpts-excerpt-title" >{itemTitle}</Link>
@@ -20,58 +41,60 @@ function getChaptersAndExcerpts(context){
     </div>
     );
   });
+
+
   return {chapters:chapterResults, excerpts:excerptsResults};
 }
 
 const FrontPageListing = ( {context} ) => {
+  const pageTransitions={
+    in:{
+      // backgroundColor: "blue",
+      x: 0,
+    },
+    out:{
+      // backgroundColor: "limegreen",
+      x: "-100vw",
+    },
+    transition:{
+      duration: 0.66,
+      // timingFunction: "ease-in",
+      timingFunction: "anticipate",
+    },
+  }
   const chaptersAndPosts = getChaptersAndExcerpts(context);
   return (
-    <div className="frontPageListing_container">
+    // <div className="frontPageListing_container">
+    <div >
+      {context.heroSeen ? null : <FrontPageHero /> }
+      
+      <motion.div
+        id="content"
+        className="frontPageListing_container"
+        key="frontPageListing_container"
+        initial={pageTransitions.out}
+        animate={pageTransitions.in}
+        exit={pageTransitions.out}
+        transition={pageTransitions.transition}
+      >
 
-      <div className="frontPageListing_heading">
-        <h2 className="frontPageListing_title">Some Stuff To Read</h2>
-      </div>
+        <div className="frontPageListing_heading">
+          <h2 className="frontPageListing_title">Some Stuff To Read</h2>
+        </div>
 
-      {/* <div className="frontPageListing_chaptersListing"> */}
-        <ul className="frontPageListing_chaptersListing">{
-          chaptersAndPosts.chapters.map( (item) =>  item )
-        }</ul>
+          <ul className="frontPageListing_chaptersListing">{
+            chaptersAndPosts.chapters.map( (item) =>  item )
+          }</ul>
+
+        <div className="frontPageListing_excerptsListing">
+          <div>{
+            chaptersAndPosts.excerpts.map( (item) =>  item )
+          }</div>
+        </div>
       {/* </div> */}
-
-      <div className="frontPageListing_excerptsListing">
-        <div>{
-          chaptersAndPosts.excerpts.map( (item) =>  item )
-        }</div>
-      </div>
+      </motion.div>
     </div>
   )
 }
 
 export default WithConsumer(FrontPageListing);
-
-
-
-    // <div className="frontPageListing_container">
-    //   <div className="frontPageListing_header">
-    //     <h2 className="frontPageListing_title">
-    //       {context.get('frontPageListingTitle')}
-    //     </h2>
-    //     <p className="frontPageListing_subtitle">
-    //       {context.get('frontPageListingSubtitle')}
-    //     </p>
-    //   </div>
-    //   <div className="frontPageListing_list">
-    //     {context.get('frontPageListingItems').map((item, index) => {
-    //       return (
-    //         <div className="frontPageListing_item" key={index}>
-    //           <div className="frontPageListing_item_title">
-    //             {item.title}
-    //           </div>
-    //           <div className="frontPageListing_item_description">
-    //             {item.description}
-    //           </div>
-    //         </div>
-    //       );
-    //     })}
-    //   </div>
-    // </div>

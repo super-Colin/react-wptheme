@@ -31,7 +31,7 @@ function rotateLinesContainer(currentScrollPercentage, targetAngle, doneByPercen
 
 function moveLines(){
   const lines = document.querySelectorAll('.lineAbyss_movingLine');
-  const scrollAmountToCompleteAnimation = 100; //px's
+  const scrollAmountToCompleteAnimation = 150; //px's
   const percentThroughAnimation = window.scrollY % scrollAmountToCompleteAnimation / scrollAmountToCompleteAnimation; //as a decimal
   const exponent = 3;
   const movementHighestExponentResult = Math.pow(lines.length, exponent);

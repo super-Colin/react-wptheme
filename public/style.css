@@ -15,6 +15,16 @@ Text Domain: supercolin-react
 This theme, like WordPress, is licensed under the GPL.
 Use it to make something cool, have fun, and !!! share what you've learned with others !!!
 */
+html, body {
+  scroll-behavior: smooth;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+html::-webkit-scrollbar {
+  width: 0;
+}
+
 /* ==-- Break Points--== */
 .accessibleDisplayNone {
   display: none;
@@ -1340,6 +1350,21 @@ html {
 .frontPageListing_excerpts-excerpt-title,
 .frontPageListing_excerpts-excerpt-title:visited {
   color: #FFF;
+}
+
+.listingSingle_container {
+  margin-left: 4vw;
+  margin-right: 4vw;
+}
+@media (min-width: 1180px) {
+  .listingSingle_container {
+    max-width: 90vw;
+  }
+}
+@media (min-width: 1760px) {
+  .listingSingle_container {
+    max-width: 85vw;
+  }
 }
 
 #lineAbyss_windowFrame {

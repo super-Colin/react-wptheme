@@ -2,6 +2,14 @@
 // Variables that are likely to be adjusted for each new theme
 // these are also defaults... so don't delete them!
 
+html, body{ // Hide scrollbars
+    scroll-behavior: smooth;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+html::-webkit-scrollbar {
+    width: 0;
+}
 
 
 // COLORS

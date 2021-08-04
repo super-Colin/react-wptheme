@@ -60,3 +60,9 @@ $frontPage_listing-textColor: $theme_color-white;
 .frontPageListing_excerpts-excerpt-title:visited{
   color: $frontPage_listing-textColor;
 }
+
+
+
+.listingSingle_container{
+  @include block_margin-x;
+}

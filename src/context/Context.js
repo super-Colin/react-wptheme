@@ -102,7 +102,7 @@ export class Provider extends React.Component {
   buildUrl(slug){
     // let url = '/wp-json/wp/v2/'; // PRODUCTION
     let url = '/scwp/wp-json/wp/v2/'; // DEV ENV ONLY
-    url += slug ? 'posts/?slug=' + slug : 'posts/';
+    url += slug ? 'posts/?slug=' + slug : 'posts?per_page=20';
     // console.log('BuilUrl : ', url);
     return url;
   }

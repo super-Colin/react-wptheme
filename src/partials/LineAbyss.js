@@ -72,17 +72,14 @@ function changeColorsOnNewSection(sectionsAndColors, currentScrollPosition){
       if( isElemMajorityOfViewport(targetElem, currentScrollPosition) ){
         // bgElem.style.backgroundColor = sectionsAndColors[sectionName];
         bgElem.classList = 'lineAbyss_bg-' + sectionName;
-        console.log('winning color bg! for ', sectionName);
+        // console.log('winning color bg! for ', sectionName);
         colorChanged = true;
       }
     }
-
-    // else{console.log('elem for bg change not found');}
-
   });
-  if(! colorChanged ){
-    bgElem.classList = '';
-  }
+  // if(! colorChanged ){
+  //   bgElem.classList = '';
+  // }
 }
 
 // ~~~~~ Utility Functions
@@ -115,11 +112,11 @@ function isElemMajorityOfViewport(elem, currentScrollPosition){
   // && (elemRect.top + elemRect.height) - (currentScrollPosition + window.innerHeight) > 0 ){
 
 
-  console.log(`${elem.id}: ${ elemRect.top - (window.innerHeight * 0.66)} < 0 && ${(elemRect.top + elemRect.height)} > ${(window.innerHeight * 0.5)} )}`);
+  // console.log(`${elem.id}: ${ elemRect.top - (window.innerHeight * 0.66)} < 0 && ${(elemRect.top + elemRect.height)} > ${(window.innerHeight * 0.5)} )}`);
 
   if( elemRect.top < (window.innerHeight * 0.66) //top of elem above halfway point of viewport 
   && (elemRect.top + elemRect.height) > (window.innerHeight * 0.5 ) ){  // bottom of elem below halfway point of viewport
-    console.log(elem, 'is majority of viewport');
+    // console.log(elem, 'is majority of viewport');
     return true
   }else{return false}
 }

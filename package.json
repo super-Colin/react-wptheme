@@ -1,5 +1,5 @@
 {
-    "name": "supercolin_react2",
+    "name": "supercolin_react",
     "version": "0.1.0",
     "private": true,
     "dependencies": {
@@ -41,8 +41,8 @@
             "last 1 safari version"
         ]
     },
-    "homepage": "/scwp/wp-content/themes/supercolin_react2",
-    "homepage// PRODUCTION": "/wp-content/themes/supercolin_react2",
-    "homepage// DEV ENV ONLY": "/scwp/wp-content/themes/supercolin_react2",
+    "homepage": "/scwp/wp-content/themes/supercolin_react",
+    "homepage// PRODUCTION":    "/wp-content/themes/supercolin_react",
+    "homepage// DEV ENV ONLY":  "/scwp/wp-content/themes/supercolin_react",
     "browserLaunchTo": "https://localhost/scwp"
 }

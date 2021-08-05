@@ -22,14 +22,24 @@ function getChaptersAndExcerpts(context){
     if (! postsAsSortedObject[category]) {
       postsAsSortedObject[category] = [];
     }
-    console.log(`pushing ${item} to $postsAsSortedObject[category]{}`);
+    // console.log(`pushing ${item} to $postsAsSortedObject[category]{}`);
     postsAsSortedObject[category].push(item);
   })
+
+  console.log('need to sort', postsAsSortedObject);
+  console.log(context.categoryNamesbyId);
+
+
+  const sortObject = obj => Object.keys(obj).sort().reverse().reduce((res, key) => (res[key] = obj[key], res), {})
+  postsAsSortedObject = sortObject(postsAsSortedObject); // reverse the sort from ascending to descending;
+
+
+
   console.log('postsAsSortedObject', postsAsSortedObject);
   let sortedJsx = {chapters: [], excerpts: []};
 
   Object.keys(postsAsSortedObject).map((categoryId)=>{
-    console.log(`${context.categoryNamesbyId[categoryId]}: ${postsAsSortedObject[categoryId]}`);
+    // console.log(`${context.categoryNamesbyId[categoryId]}: ${postsAsSortedObject[categoryId]}`);
     let innerChapterResults = [];
     let innerExcerptsResults = [];
 
@@ -61,7 +71,7 @@ function getChaptersAndExcerpts(context){
     sortedJsx.excerpts.push(finishedInnerExcerptsResults);
   })
 
-  console.log('jsx: ',sortedJsx);
+  // console.log('jsx: ',sortedJsx);
   return sortedJsx;
 }
 
@@ -86,7 +96,7 @@ const FrontPageListing = ( {context} ) => {
   
   const chaptersAndPosts = getChaptersAndExcerpts(context);
 
-  console.log('chaptersAndPosts', chaptersAndPosts);
+  // console.log('chaptersAndPosts', chaptersAndPosts);
   return (
     // <div className="frontPageListing_container">
     <div >

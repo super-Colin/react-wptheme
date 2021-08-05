@@ -31,6 +31,8 @@ $frontPage_listing-textColor: $theme_color-white;
 .frontPageListing_chaptersListing li::before{
   content: '~ ';
 }
+.chapter-listing_categoryTitle::before,
+.frontPageListing_chaptersListing:first-of-type::before,
 .frontPageListing_chaptersListing::before,
 .frontPageListing_chaptersListing::after,
 .frontPageListing_chaptersListing li::after {
@@ -62,6 +64,27 @@ $frontPage_listing-textColor: $theme_color-white;
 }
 
 
+.chapter-listing_categoryTitle{
+  font-size: $type_heading-font-size-medium;
+  margin-top: $spacing_small;;
+}
+
+
+.excerpts-listing_categoryTitle{
+  font-size: $type_heading-font-size-xxlarge;
+  margin-bottom: $spacing_medium;
+}
+.excerpts-listing {
+  margin-top: $spacing_xxxlarge;
+}
+
+.excerpts-listing:first-of-type,
+.excerpts-listing_categoryTitle,
+.frontPageListing_chaptersListing li:first-of-type,
+.excerpts-listing_categoryTitle:first-of-type,
+.frontPageListing_chaptersListing:first-of-type {
+  margin-top: 0;
+}
 
 .listingSingle_container{
   @include block_margin-x;

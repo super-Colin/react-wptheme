@@ -68,7 +68,7 @@ $abyssColor3: rgb(136, 17, 216);
 }
 
 #lineAbyss_container .horizontalAbyss,
-.lineAbyss_bg{
+#lineAbyss_bg{
   position: absolute;
   top:0;
   left: 0;
@@ -93,16 +93,16 @@ $abyssColor3: rgb(136, 17, 216);
   animation-iteration-count: infinite;
 }
 
-
-.lineAbyss_bg{
+#lineAbyss_bg{
   // background-image: linear-gradient(to top, $abyssColor 2%, $orange 80%);
   // animation-name: changeColor;
   background-color: $abyssColor1;
   animation-duration: 10s;
   animation-iteration-count: infinite;
+  transition: all $timing_transitionduration-medium;
 }
-.lineAbyss_bg::before,
-.lineAbyss_bg::after{
+#lineAbyss_bg::before,
+#lineAbyss_bg::after{
   content: '';
   position: absolute;
   top: 0;
@@ -111,14 +111,15 @@ $abyssColor3: rgb(136, 17, 216);
   right: 0;
   background-image: linear-gradient(to top, $abyssColor 2%, rgba(0, 0, 0, 0) 85%)
 }
-.lineAbyss_bg::after {
+#lineAbyss_bg::after {
   background-image: linear-gradient(to top, $abyssColor 1%, rgba(0, 0, 0, 0) 95%)
 }
-#lineAbyss_container .horizontalAbyss{
+#lineAbyss_bg.lineAbyss_bg-Codeexcerpts {background-color: $theme_color-forSection-code;}
+#lineAbyss_bg.lineAbyss_bg-Designexcerpts {background-color: $theme_color-forSection-design;}
+#lineAbyss_bg.lineAbyss_bg-Randomexcerpts {background-color: $theme_color-forSection-random;}
+#lineAbyss_bg.lineAbyss_bg-Projectsexcerpts {background-color: $theme_color-forSection-projects;}
 
-}
-
-// .lineAbyss_bg{background: blue !important;}
+// #lineAbyss_bg{background: blue !important;}
 
 
 

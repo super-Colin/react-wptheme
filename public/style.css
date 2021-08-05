@@ -1310,6 +1310,8 @@ html {
   content: "~ ";
 }
 
+.chapter-listing_categoryTitle::before,
+.frontPageListing_chaptersListing:first-of-type::before,
 .frontPageListing_chaptersListing::before,
 .frontPageListing_chaptersListing::after,
 .frontPageListing_chaptersListing li::after {
@@ -1350,6 +1352,28 @@ html {
 .frontPageListing_excerpts-excerpt-title,
 .frontPageListing_excerpts-excerpt-title:visited {
   color: #FFF;
+}
+
+.chapter-listing_categoryTitle {
+  font-size: 1.8rem;
+  margin-top: 0.8rem;
+}
+
+.excerpts-listing_categoryTitle {
+  font-size: 3.2rem;
+  margin-bottom: 1.2rem;
+}
+
+.excerpts-listing {
+  margin-top: 3.8rem;
+}
+
+.excerpts-listing:first-of-type,
+.excerpts-listing_categoryTitle,
+.frontPageListing_chaptersListing li:first-of-type,
+.excerpts-listing_categoryTitle:first-of-type,
+.frontPageListing_chaptersListing:first-of-type {
+  margin-top: 0;
 }
 
 .listingSingle_container {
@@ -1412,7 +1436,7 @@ html {
   }
 }
 #lineAbyss_container .horizontalAbyss,
-.lineAbyss_bg {
+#lineAbyss_bg {
   position: absolute;
   top: 0;
   left: 0;
@@ -1434,14 +1458,15 @@ html {
   animation-iteration-count: infinite;
 }
 
-.lineAbyss_bg {
+#lineAbyss_bg {
   background-color: #E56824;
   animation-duration: 10s;
   animation-iteration-count: infinite;
+  transition: all 0.75s;
 }
 
-.lineAbyss_bg::before,
-.lineAbyss_bg::after {
+#lineAbyss_bg::before,
+#lineAbyss_bg::after {
   content: "";
   position: absolute;
   top: 0;
@@ -1451,8 +1476,24 @@ html {
   background-image: linear-gradient(to top, #2C2C2C 2%, rgba(0, 0, 0, 0) 85%);
 }
 
-.lineAbyss_bg::after {
+#lineAbyss_bg::after {
   background-image: linear-gradient(to top, #2C2C2C 1%, rgba(0, 0, 0, 0) 95%);
+}
+
+#lineAbyss_bg.lineAbyss_bg-Codeexcerpts {
+  background-color: #ED6C25;
+}
+
+#lineAbyss_bg.lineAbyss_bg-Designexcerpts {
+  background-color: #6c25af;
+}
+
+#lineAbyss_bg.lineAbyss_bg-Randomexcerpts {
+  background-color: #2cacb3;
+}
+
+#lineAbyss_bg.lineAbyss_bg-Projectsexcerpts {
+  background-color: #2ca031;
 }
 
 @keyframes moveLine {

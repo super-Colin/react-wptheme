@@ -42,8 +42,8 @@ import FrontPageListingSingle from './partials/FrontPageListingSingle';
 // {/* https://reactrouter.com/web/api/BrowserRouter/basename-string */}
 ReactDOM.render(
   <BrowserRouter basename="/scwp" > {/* // DEV ENV ONLY, remove basename */}
-    <ContentWithRouter />
     <LineAbyss />
+    <ContentWithRouter />
   </BrowserRouter>
   , document.getElementById('root') 
 );

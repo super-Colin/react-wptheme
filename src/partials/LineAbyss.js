@@ -1,5 +1,12 @@
 import React, {useEffect} from 'react';
 
+const sectionsAndColors ={
+  "Codeexcerpts": "#ED6C25",
+  "Designexcerpts": "#862bdb",
+  "Randomexcerpts": "#31da39",
+  "Projectsexcerpts": "#33ced6",
+}
+
 // ~~~~~ Create HTML 
 function makeMovingLines(){
   const numberOfSquares =12;
@@ -14,11 +21,13 @@ function makeMovingLines(){
 
 // ~~~~~ Scroll Handling
 function lineAbyssScrollHandler(){
-  let currentScrollPosition = window.scrollY;
-  var percentageDownPage = percentageOfPageScrolled();
-
+  // let currentScrollPosition = window.scrollY;
+  const doc = document.documentElement;
+  const currentScrollPosition = (window.pageYOffset || doc.scrollTop)  - (doc.clientTop || 0);
+  const percentageDownPage = percentageOfPageScrolled();
   rotateLinesContainer(percentageDownPage, 60, 36, '-');
   moveLines(currentScrollPosition);
+  changeColorsOnNewSection(sectionsAndColors, currentScrollPosition);
 }
 
 // ~~~~~ Animation Functions
@@ -52,6 +61,30 @@ function moveLines(){
   }
 }
 
+function changeColorsOnNewSection(sectionsAndColors, currentScrollPosition){
+  const bgElem = document.querySelector('#lineAbyss_bg');
+  let colorChanged = false;
+
+  Object.keys(sectionsAndColors).map((sectionName)=>{
+    const targetElem = document.querySelector(`#${sectionName}`);
+    if(targetElem){
+      // console.log(`${sectionName} majority of screen?, ${isElemMajorityOfViewport(targetElem, currentScrollPosition)}, `);
+      if( isElemMajorityOfViewport(targetElem, currentScrollPosition) ){
+        // bgElem.style.backgroundColor = sectionsAndColors[sectionName];
+        bgElem.classList = 'lineAbyss_bg-' + sectionName;
+        console.log('winning color bg! for ', sectionName);
+        colorChanged = true;
+      }
+    }
+
+    // else{console.log('elem for bg change not found');}
+
+  });
+  if(! colorChanged ){
+    bgElem.classList = '';
+  }
+}
+
 // ~~~~~ Utility Functions
 function invertNumberInRange( currentNumberInRange, highestNumberInRange){
   return Math.min( Math.abs(highestNumberInRange - currentNumberInRange ) , highestNumberInRange);
@@ -73,8 +106,27 @@ function percentageOfPageScrolled(){
     var pctScrolled = Math.floor(scrollTop / trackLength * 100) // gets percentage scrolled (ie: 80 or NaN if tracklength == 0)
     return pctScrolled;
 }
-// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+function isElemMajorityOfViewport(elem, currentScrollPosition){
+  const elemRect = elem.getBoundingClientRect();
+  // console.log(`${elem.id}: ${ elemRect.top} < ${currentScrollPosition + (window.innerHeight / 1.9)} && ${(elemRect.top + elemRect.height)} - ${(currentScrollPosition + window.innerHeight)} > 0 )}`);
+
+  // if( elemRect.top < currentScrollPosition + (window.innerHeight / 1.9) 
+  // && (elemRect.top + elemRect.height) - (currentScrollPosition + window.innerHeight) > 0 ){
+
+
+  console.log(`${elem.id}: ${ elemRect.top - (window.innerHeight * 0.66)} < 0 && ${(elemRect.top + elemRect.height)} > ${(window.innerHeight * 0.5)} )}`);
+
+  if( elemRect.top < (window.innerHeight * 0.66) //top of elem above halfway point of viewport 
+  && (elemRect.top + elemRect.height) > (window.innerHeight * 0.5 ) ){  // bottom of elem below halfway point of viewport
+    console.log(elem, 'is majority of viewport');
+    return true
+  }else{return false}
+}
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Render ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const LineAbyss = () => {
   useEffect(() => {
     lineAbyssScrollHandler();
@@ -82,7 +134,7 @@ const LineAbyss = () => {
   })
   return (
     <div id="lineAbyss_windowFrame">
-      <div className="lineAbyss_bg"></div>
+      <div id="lineAbyss_bg"></div>
       {/* <div id="marker1" style="height:20px; width:20px; background:blue;" ></div> */}
 
       <div id="lineAbyss_linesContainer">

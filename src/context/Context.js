@@ -16,7 +16,7 @@ export class Provider extends React.Component {
     let route = props.router.match.path;
     let slug = props.router.match.params.slug ? props.router.match.params.slug : '';
     let term = props.router.match.params.term ? props.router.match.params.term : '';
-    let categoryIds = this.getCategoryIdsAsDictionary();
+    let categoryNamesbyId = this.getCategoryIdsAsDictionary();
     
 
     this.state = {
@@ -31,12 +31,12 @@ export class Provider extends React.Component {
       currentPage : 1,
       totalPages : 0,
       appError : '',
-      categoryIds : categoryIds,
+      categoryNamesbyId : categoryNamesbyId,
+      lastRestCall : '',
 
       //global methods
       pageUrlToPath : this.pageUrlToPath.bind(this),
       decodeHtmlText : this.decodeHtmlText.bind(this),
-      getCategoryIdsAsDictionary: this.getCategoryIdsAsDictionary.bind(this),
     };
   }
 
@@ -46,30 +46,16 @@ export class Provider extends React.Component {
   // ~~~ React State ~~~
   // ~~~~~~~~~~~~~~~~~~~
   componentDidMount(){
-    // window.scrollTo(0, 0)
-//     window.scroll({
-// 	top: 0,
-// 	behavior: "smooth"
-// });
-    // document.getElementById("content").scrollIntoView(true);
     console.log('[[[componentDidMount]]]');
     console.log('[[[componentDidMount]]] ROUTER state: ', this.props.router);
     let slug = this.props.router.match.params.slug ? this.props.router.match.params.slug : '';
     if(this.props.router.location.pathname !== '/'){
       slug = this.props.router.location.pathname;
-      this.setState({slug: slug});
     }
     this.getPosts(this.buildUrl(slug));
-    this.getCategoryIdsAsDictionary()
   }
 
-  componentDidUpdate(prevProps){ 
-//     window.scroll({
-// 	top: 0,
-// 	behavior: "smooth"
-// });
-// document.getElementById("content").scrollIntoView(true);
-
+  componentDidUpdate(prevProps){
     console.log('[[[componentDidUpdate]]] prevProps: ', prevProps)
     console.log('[[[componentDidUpdate]]] router log: ', this.props.router.match)
     let slug = this.props.router.match.params.slug ? this.props.router.match.params.slug : '';
@@ -103,7 +89,8 @@ export class Provider extends React.Component {
       // console.log('getPosts url, response.data: ', url, response.data);
       self.setState({
         posts : response.data, 
-        totalPages : response.headers['x-wp-totalpages']
+        totalPages : response.headers['x-wp-totalpages'],
+        lastRestCall : url,
       });
       console.log('~~~~~~~~~~~~~~~~~~~~~~~~~');
     }).catch(function(error){
@@ -152,15 +139,15 @@ export class Provider extends React.Component {
   }
 
   getCategoryIdsAsDictionary(){
-    let categoryIds = {};
+    let categoryNamesbyId = {};
     window.PHP_VARS.categories.map((item)=>{
       let idNumber = item.term_id;
-      // console.log('getCategoryIdsAsDictionary LOOPING: ', categoryIds[idNumber], item.name);
-      if(! categoryIds[idNumber]){
-        categoryIds[idNumber] = item.name;
+      // console.log('getCategoryIdsAsDictionary LOOPING: ', categoryNamesbyId[idNumber], item.name);
+      if(! categoryNamesbyId[idNumber]){
+        categoryNamesbyId[idNumber] = item.name;
       }
     });
-    return categoryIds;
+    return categoryNamesbyId;
   }
 
 

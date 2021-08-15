@@ -34,13 +34,13 @@ const FrontPageListingSingle = ({context}) => {
       transition={pageTransitions.transition}
     >
 
-      <Link to="/" style={{fontSize:"50px"}}>Home</Link>
+      {/* <Link to="/" style={{fontSize:"50px"}}>Home</Link> */}
 
       {posts.map((post, i) => {
         console.log(post.slug, context.slug);
         {/* if(post.slug === context.slug) { */}
           return(<div key={i}>
-            <h2>{post.title.rendered}</h2>
+            <h2 className="listingSingle_title">{post.title.rendered}</h2>
             {/* <p>{post.content.rendered}</p> */}
             <div dangerouslySetInnerHTML={{__html:post.content.rendered}}></div>
           </div>)

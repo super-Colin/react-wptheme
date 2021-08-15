@@ -117,9 +117,9 @@ const FrontPageListing = ( {context} ) => {
         </div>
 
 
-        {chaptersAndPosts.chapters ? (<ul className="frontPageListing_chaptersListing">{
+        {chaptersAndPosts.chapters ? (<div className="frontPageListing_chaptersListing">{
           chaptersAndPosts.chapters.map( (item) =>  item )
-        }</ul>) : <p>Chapters empty</p>}
+        }</div>) : <p>Chapters empty</p>}
         {/* {chaptersAndPosts.chapters ? <p>Chapters empty</p> : (<ul className="frontPageListing_chaptersListing">{
           chaptersAndPosts.chapters.map( (item) =>  item )
         }</ul>) } */}

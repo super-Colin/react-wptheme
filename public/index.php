@@ -1,6 +1,6 @@
 <?php
-  $TEMPLATE_PATH = parse_url(get_template_directory_uri(), PHP_URL_PATH);
-  header('Cache-Control: max-age=31536000');
+  // $TEMPLATE_PATH = parse_url(get_template_directory_uri(), PHP_URL_PATH);
+  // header('Cache-Control: max-age=31536000'); //PROD ONLY
 ?>
 <!DOCTYPE html>
 <html lang="en">

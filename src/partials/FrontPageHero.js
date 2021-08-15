@@ -4,7 +4,7 @@ const FrontPageHero = () => {
 
 
   function makeMovingSquares(){
-    const numberOfSquares =13;
+    const numberOfSquares =7;
     let squaresJsx = [];
     let i = 0;
     while (i < numberOfSquares) {

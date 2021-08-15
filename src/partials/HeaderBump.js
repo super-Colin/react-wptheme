@@ -17,20 +17,23 @@ const Header = ({context}) => {
 
   return (
 
-    <header id="masthead" className="site-header flatHeader_container">
+    <header id="masthead" className="site-header headerBump_container">
+
+      <div className="headerBump_sideMenu headerBump_leftMenu">
+        <Link to="/design" >Design</Link>
+        
+      </div>
       
-      <div className="flatHeader_logo">
-          <Link className="flatHeader_logo-link" to="/">
-            <span>{"< "}</span>
+      <div className="headerBump_bump">
+          <Link className="headerBump_bump-link" to="/">
             <img src={window.PHP_VARS['custom_logo_src']} alt="logo" />
-            <span>{"/>"}</span>
           </Link>
       </div>
 
-      <div className="flatHeader_itemsContainer">
-        {/* <Link to="/code" >Code</Link> */}
-        {/* <span className="flatHeader_name">Colin@SuperColin.dev</span> */}
+      <div className="headerBump_sideMenu headerBump_rightMenu">
+        <Link to="/code" >Code</Link>
       </div>
+    {/* <SearchForm /> */}
 	</header>
   )
 }

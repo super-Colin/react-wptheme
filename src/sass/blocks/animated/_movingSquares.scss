@@ -1,5 +1,5 @@
 @use "sass:math";
-$numberOfSquares: 13; // change in JS as well!
+$numberOfSquares: 7; // change in JS as well!
 $totalHeight: 75vh;
 $movingSquares-duration: 7s;
 
@@ -26,7 +26,7 @@ $movingSquares-duration: 7s;
   background-color: #000;
   background-image: linear-gradient(to bottom, #000 0, #220d20 20%, #220d20 80%, #000 100%);
   animation-name: growToFullVh;
-  animation-duration: 2s;
+  animation-duration: 1.2s;
   // animation-iteration-count: 1;
 }
 

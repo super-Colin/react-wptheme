@@ -13,11 +13,14 @@ import FrontPageHero from './partials/FrontPageHero';
 import FrontPageListing from './partials/FrontPageListing';
 import FrontPageListingSingle from './partials/FrontPageListingSingle';
 
+import Header from './partials/Header';
+
 // https://stackoverflow.com/questions/47298325/react-router-dom-getting-props-location-from-within-browserrouter-component#answer-49003128
   const ContentWithRouter = withRouter( props => {return(
 
-<Provider router={props}>
-        {console.log('IN CONTENT props: ', props)} 
+    <Provider router={props}>
+      <Header />
+        {/* {console.log('IN CONTENT props: ', props)}  */}
 
         {/* <FrontPageHero /> */}
 

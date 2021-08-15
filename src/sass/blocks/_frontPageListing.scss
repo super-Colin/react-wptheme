@@ -17,8 +17,7 @@ $frontPage_listing-textColor: $theme_color-white;
   width: 33%;
   position: sticky;
   max-height: 80vh;
-  // left: $spacing_block-margin-x-gutter;
-  top: $spacing_block-margin-y-medium;
+  top: 10vh;
   display: none;
   @include breakpoint('for-tabletLandscape') {
     display: block
@@ -84,8 +83,4 @@ $frontPage_listing-textColor: $theme_color-white;
 .excerpts-listing_categoryTitle:first-of-type,
 .frontPageListing_chaptersListing:first-of-type {
   margin-top: 0;
-}
-
-.listingSingle_container{
-  @include block_margin-x;
 }

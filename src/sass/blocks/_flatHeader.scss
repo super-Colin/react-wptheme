@@ -1,0 +1,42 @@
+
+$flatHeader_height: 4rem;
+body{
+  // padding-top: $flatHeader_height !important;
+}
+.flatHeader_container{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  // position: fixed;
+  // top: 0;
+  // left: 0;
+  // right: 0;
+  // z-index: $zindex_ui-fixed;
+
+  height: $flatHeader_height;
+  font-size: $flatHeader_height * 0.5;
+  @include block_padding_gutters;
+
+  background-color: rgba(0, 0, 0, 0.8);
+  font-family: $theme_heading-font-family-main;
+}
+.flatHeader_logo-link{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  text-decoration: none;
+  
+  span{
+    color: $theme_color-main;
+    white-space: pre;
+  }
+  img{
+    height: 2.5em;
+  }
+}
+
+.flatHeader_name {
+  // font-family: $theme_heading-font-family-main;
+}

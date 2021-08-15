@@ -118,6 +118,7 @@ export class Provider extends React.Component {
     return doc.documentElement.textContent;
   }
 
+  
   pageUrlToPath = (pageURL) => {
     let domainRelativePath = pageURL.split( this.getDomainPrefix() )[1];
     // console.log('pageUrlToPath domainRelativePath: ', domainRelativePath, 'from: ', pageURL);

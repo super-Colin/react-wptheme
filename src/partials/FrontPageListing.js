@@ -3,7 +3,9 @@ import WithConsumer from '../context/WithConsumer';
 import { Link } from 'react-router-dom';
 import { HashLink} from 'react-router-hash-link';
 
+
 import FrontPageHero from './FrontPageHero';
+import Header from './Header';
 import { motion } from 'framer-motion';
 
 
@@ -11,7 +13,7 @@ import { motion } from 'framer-motion';
 
 function getChaptersAndExcerpts(context){
 
-  console.log('getChaptersAndExcerpts context', context);
+  // console.log('getChaptersAndExcerpts context', context);
   const posts = context.posts;
   let finishedChapterResults = [];
   let finishedExcerptsResults = [];
@@ -26,8 +28,8 @@ function getChaptersAndExcerpts(context){
     postsAsSortedObject[category].push(item);
   })
 
-  console.log('need to sort', postsAsSortedObject);
-  console.log(context.categoryNamesbyId);
+  // console.log('need to sort', postsAsSortedObject);
+  // console.log(context.categoryNamesbyId);
 
 
   const sortObject = obj => Object.keys(obj).sort().reverse().reduce((res, key) => (res[key] = obj[key], res), {})
@@ -35,7 +37,7 @@ function getChaptersAndExcerpts(context){
 
 
 
-  console.log('postsAsSortedObject', postsAsSortedObject);
+  // console.log('postsAsSortedObject', postsAsSortedObject);
   let sortedJsx = {chapters: [], excerpts: []};
 
   Object.keys(postsAsSortedObject).map((categoryId)=>{
@@ -66,7 +68,7 @@ function getChaptersAndExcerpts(context){
     </div>);
     finishedExcerptsResults.push(finishedInnerExcerptsResults);
 
-    console.log('finsihed object: ', {chapters:finishedInnerChaptersResults, excerpts:finishedInnerExcerptsResults});
+    // console.log('finsihed object: ', {chapters:finishedInnerChaptersResults, excerpts:finishedInnerExcerptsResults});
     sortedJsx.chapters.push(finishedInnerChaptersResults);
     sortedJsx.excerpts.push(finishedInnerExcerptsResults);
   })
@@ -79,17 +81,10 @@ function getChaptersAndExcerpts(context){
 
 const FrontPageListing = ( {context} ) => {
   const pageTransitions={
-    in:{
-      // backgroundColor: "blue",
-      x: 0,
-    },
-    out:{
-      // backgroundColor: "limegreen",
-      x: "-100vw",
-    },
+    in:{x: 0},
+    out:{x: "-100vw"},
     transition:{
       duration: 0.66,
-      // timingFunction: "ease-in",
       timingFunction: "anticipate",
     },
   }
@@ -104,7 +99,7 @@ const FrontPageListing = ( {context} ) => {
       
       <motion.div
         id="content"
-        className="frontPageListing_container"
+        // className="frontPageListing_container"
         key="frontPageListing_container"
         initial={pageTransitions.out}
         animate={pageTransitions.in}
@@ -112,36 +107,24 @@ const FrontPageListing = ( {context} ) => {
         transition={pageTransitions.transition}
       >
 
-        <div className="frontPageListing_heading">
-          <h2 className="frontPageListing_title">Some Stuff To Read</h2>
+        {/* <Header /> */}
+        <div className="frontPageListing_container">
+          <div className="frontPageListing_heading">
+            <h2 className="frontPageListing_title">Some Stuff To Read</h2>
+          </div>
+
+
+          {chaptersAndPosts.chapters ? (<div className="frontPageListing_chaptersListing">{
+            chaptersAndPosts.chapters.map( (item) =>  item )
+          }</div>) : <p>Chapters empty</p>}
+
+
+          {chaptersAndPosts.excerpts ? (<div className="frontPageListing_excerptsListing">
+            <div>{
+              chaptersAndPosts.excerpts.map( (item) =>  item )
+            }</div>
+          </div>) : <p>Excerpts empty</p>}
         </div>
-
-
-        {chaptersAndPosts.chapters ? (<div className="frontPageListing_chaptersListing">{
-          chaptersAndPosts.chapters.map( (item) =>  item )
-        }</div>) : <p>Chapters empty</p>}
-        {/* {chaptersAndPosts.chapters ? <p>Chapters empty</p> : (<ul className="frontPageListing_chaptersListing">{
-          chaptersAndPosts.chapters.map( (item) =>  item )
-        }</ul>) } */}
-
-        {chaptersAndPosts.excerpts ? (<div className="frontPageListing_excerptsListing">
-          <div>{
-            chaptersAndPosts.excerpts.map( (item) =>  item )
-          }</div>
-        </div>) : <p>Excerpts empty</p>}
-
-
-        {/* <ul className="frontPageListing_chaptersListing">{
-          chapters.map( (item) =>  item )
-        }</ul>
-
-        <div className="frontPageListing_excerptsListing">
-          <div>{
-            excerpts.map( (item) =>  item )
-          }</div>
-        </div> */}
-
-
       </motion.div>
     </div>
   )

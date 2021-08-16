@@ -7,7 +7,7 @@ import { motion } from 'framer-motion';
 import FrontPageHero from '../partials/FrontPageHero';
 import FrontPageListingSingle from '../partials/FrontPageListingSingle';
 
-console.log('Single component');
+// console.log('Single component');
 const Single = (props) => {
 
   return (

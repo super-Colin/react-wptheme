@@ -46,8 +46,8 @@ export class Provider extends React.Component {
   // ~~~ React State ~~~
   // ~~~~~~~~~~~~~~~~~~~
   componentDidMount(){
-    console.log('[[[componentDidMount]]]');
-    console.log('[[[componentDidMount]]] ROUTER state: ', this.props.router);
+    // console.log('[[[componentDidMount]]]');
+    // console.log('[[[componentDidMount]]] ROUTER state: ', this.props.router);
     let slug = this.props.router.match.params.slug ? this.props.router.match.params.slug : '';
     if(this.props.router.location.pathname !== '/'){
       slug = this.props.router.location.pathname;
@@ -56,8 +56,8 @@ export class Provider extends React.Component {
   }
 
   componentDidUpdate(prevProps){
-    console.log('[[[componentDidUpdate]]] prevProps: ', prevProps)
-    console.log('[[[componentDidUpdate]]] router log: ', this.props.router.match)
+    // console.log('[[[componentDidUpdate]]] prevProps: ', prevProps)
+    // console.log('[[[componentDidUpdate]]] router log: ', this.props.router.match)
     let slug = this.props.router.match.params.slug ? this.props.router.match.params.slug : '';
     if(this.props.router.location.pathname !== '/'){
       slug = this.props.router.location.pathname;
@@ -71,7 +71,7 @@ export class Provider extends React.Component {
       function(){
         let url = this.buildUrl(slug);
         let results = this.getPosts(url);
-        console.log('[[[componentDidUpdate url]]]: Slug',slug ,'url', url, 'results: ', results );        
+        // console.log('[[[componentDidUpdate url]]]: Slug',slug ,'url', url, 'results: ', results );        
         return results;
       })
       
@@ -92,7 +92,7 @@ export class Provider extends React.Component {
         totalPages : response.headers['x-wp-totalpages'],
         lastRestCall : url,
       });
-      console.log('~~~~~~~~~~~~~~~~~~~~~~~~~');
+      // console.log('~~~~~~~~~~~~~~~~~~~~~~~~~');
     }).catch(function(error){
       console.log(error);
       self.appError = 'An unexpected error occurred';

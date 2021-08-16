@@ -480,6 +480,13 @@ body {
   }
 }
 
+img.center-img,
+.center-img img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 ul::before, ul::after, ul li::before, ul li::after {
   display: inline-block;
   white-space: pre;
@@ -995,7 +1002,7 @@ p {
   background-color: #000;
   background-image: linear-gradient(to bottom, #000 0, #220d20 20%, #220d20 80%, #000 100%);
   animation-name: growToFullVh;
-  animation-duration: 1.2s;
+  animation-duration: 1s;
 }
 
 .movingSquares_content {

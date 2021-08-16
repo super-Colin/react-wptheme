@@ -12,9 +12,9 @@ import FrontPageListingSingle from '../partials/FrontPageListingSingle';
 
 
 const FrontPageListingFull = (props) => {
-  console.log('FrontPageListingFull props', props);
+  // console.log('FrontPageListingFull props', props);
   const location = useLocation();
-  console.log('FrontPageListingFull LOCATION', location);
+  // console.log('FrontPageListingFull LOCATION', location);
 
   return (
 <Provider router={props}> 

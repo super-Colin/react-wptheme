@@ -19,7 +19,7 @@ import Header from './partials/Header';
   const ContentWithRouter = withRouter( props => {return(
 
     <Provider router={props}>
-      <Header />
+      {/* <Header /> */}
         {/* {console.log('IN CONTENT props: ', props)}  */}
 
         {/* <FrontPageHero /> */}

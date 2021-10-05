@@ -24,8 +24,8 @@ import Header from './partials/Header';
 
         {/* <FrontPageHero /> */}
 
-        {/* <AnimatePresence exitBeforeEnter> */}
-        <AnimatePresence >
+        <AnimatePresence exitBeforeEnter>
+        {/* <AnimatePresence > */}
           {/* <Switch location={props.location} key={props.location.path}> */}
           <Switch >
             <Route exact path="/" component={FrontPageListing} />
@@ -34,8 +34,6 @@ import Header from './partials/Header';
           </Switch>
         </AnimatePresence>
 
-        <style>{"#wpadminbar{display: none;} html{margin-top: 0 !important;}"}</style> 
-        {/* FOR DEV ENV, hide the wp admin bar on front end */}
       </Provider>
 
   )})
@@ -44,6 +42,7 @@ import Header from './partials/Header';
 // {/* for example, my local WP home page frontend is at    http://localhost/scwp/    */}
 // {/* https://reactrouter.com/web/api/BrowserRouter/basename-string */}
 ReactDOM.render(
+  // <BrowserRouter  > {/* // Production */}
   <BrowserRouter basename="/scwp" > {/* // DEV ENV ONLY, remove basename */}
     <LineAbyss />
     <ContentWithRouter />
